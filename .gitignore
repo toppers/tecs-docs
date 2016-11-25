@@ -2,6 +2,14 @@
 .DS_Store
 __pycache__
 *.pyc
+Thumbs.db
+*.DS_Store
 
 # Derived files
 _build
+
+# Editors
+*~
+*.swp
+*.sublime-workspace
+*.sublime-project
