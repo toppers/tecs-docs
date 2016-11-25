@@ -14,6 +14,7 @@ ASP3+TECS ドキュメント
 .. toctree::
    :maxdepth: 2
 
+   tecs/index
    asp3/index
 
 * :ref:`genindex`
