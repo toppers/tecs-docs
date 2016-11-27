@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-ASP3+TECS ドキュメント
-======================
+TECS マニュアル
+===================
 
 .. todo::
     to be filled in
