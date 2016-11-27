@@ -16,9 +16,11 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
+   License
    TECSref
    TCDref
    CDLref_index
+   IMPref_index
 
 Indices and tables
 ==================

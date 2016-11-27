@@ -1,5 +1,11 @@
-TECS コンポーネント記述言語 (TECS CDL)
-==============================================================
+.. _cdlref-index:
+
+TECS コンポーネント記述言語 (TECS CDL) 
+==================================================
+
+目次
+......
+
 
 Contents:
 
@@ -7,6 +13,7 @@ Contents:
    :maxdepth: 3
 
    CDLref
+   CDLref_undoc
    CDLref_lex
    CDLref_type
    CDLref_scope

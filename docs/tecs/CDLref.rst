@@ -4,8 +4,8 @@ TECS CDL リファレンスマニュアル
 TECS コンポーネント記述言語 (TECS CDL) の記述方法について、説明します。
 TECS ジェネレータ V1.3.1.0 の実装に対応します。
 
- * [wiki:CDLref_index 目次]
- * [wiki:CDLref_undoc 未記載事項]
+ * :ref:`cdlref-index`
+ * :ref:`cdlref-undoc`
 
 共通部
 ------
@@ -18,7 +18,7 @@ TECS CDL の文法は、C 言語の文法と親和性のあるものとなって
      CDL ファイルの拡張子は '.cdl' です。
      CDL ファイルは、通常文字コードとして UTF-8 を用います。しかし、7bit ASCII を含む文字コードであれば、他の文字コードも可能です。
      ただし sjis のようにマルチバイト文字の2バイト目以降に特殊な文字が来る可能性のある文字コードは、扱えるとは限りません。
- * [wiki:CDLref_lex 字句]
+ * :ref:`CDLref-lex`
  * [wiki:CDLref_type 型]
  * [wiki:CDLref_expression 式]
  * [wiki:CDLref_scope 名前有効範囲]
