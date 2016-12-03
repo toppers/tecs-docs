@@ -1,13 +1,9 @@
 .. _cdlref-index:
 
-TECS コンポーネント記述言語 (TECS CDL) 
+TECS コンポーネント記述言語 (TECS CDL)
 ==================================================
 
-目次
-......
-
-
-Contents:
+目次:
 
 .. toctree::
    :maxdepth: 3

@@ -14,8 +14,15 @@ TECS マニュアル
 .. toctree::
    :maxdepth: 2
 
-   tecs/index
+   tecs/License
+   tecs/TECSref
+   tecs/TCDref_index
+   tecs/CDLref_index
+   tecs/IMPref_index
    asp3/index
+   tecs/Plugin_index
+   tecs/CMDref
+   tecs/Ref
 
 * :ref:`genindex`
 * :ref:`search`
