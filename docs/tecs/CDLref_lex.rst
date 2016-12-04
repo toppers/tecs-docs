@@ -1,4 +1,4 @@
-.._CDLref-lex:
+.. _CDLref-lex:
 
 字句
 =======

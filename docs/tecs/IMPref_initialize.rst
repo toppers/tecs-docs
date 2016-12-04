@@ -1,3 +1,5 @@
+.. _IMPref-initialize:
+
 初期化コード
 ========================
 
@@ -15,7 +17,7 @@ INITILIZE_TECS は、必要に応じて以下を行います。
 
 初期化を行う前に TECS のコードが実行された場合の振る舞いは、未定義です。
 
-【補足説明】TECS ジェネレータ V1.2.* まで INITIALZE_TECSGEN であったが、V1.3.0.0 以降、INITIALIZE_TECS に変更となった。ただし INITIALIZE_TECSGEN を INITIALIZE_TEcS に置換するマクロが定義されるため、従来のコードも期待した通りにコンパイル、リンクスうることができる。
+【補足説明】TECS ジェネレータ V1.2.* まで INITIALZE_TECSGEN であったが、V1.3.0.0 以降、INITIALIZE_TECS に変更となった。ただし INITIALIZE_TECSGEN を INITIALIZE_TECS に置換するマクロが定義されるため、従来のコードも期待した通りにコンパイル、リンクスうることができる。
 
 【補足説明】TECS ジェネレータ V1.2.* まで、INITIALIZE_TECS() は TECS ジェネレータにオプション -R が指定された時だけ生成されていたが、V1.3.0.1 以降、常に生成される。ただし -R が指定されていない場合、INITIALIZE_TECS()の内容は空であり INITIALIZE_TECS() が呼び出されない従来のコードも動作する。ただし、将来においても成り立つとは限らない。
 

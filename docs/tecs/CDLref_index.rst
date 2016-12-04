@@ -1,7 +1,7 @@
-.. _cdlref-index:
+.. _TECS-CDL:
 
 TECS コンポーネント記述言語 (TECS CDL)
-==================================================
+****************************************************
 
 目次:
 
@@ -12,6 +12,7 @@ TECS コンポーネント記述言語 (TECS CDL)
    CDLref_undoc
    CDLref_lex
    CDLref_type
+   CDLref_expression
    CDLref_scope
    CDLref_names
    CDLref_preface

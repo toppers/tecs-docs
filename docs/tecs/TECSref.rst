@@ -15,6 +15,5 @@ TECS V1.4.0 の新機能
 このリファレンスマニュアルの他の部分は、TECS V1.3.1.0 (2016年1月公開) に対応しています。
 TECS V1.4.0 (2016年11月公開) の新機能は、機能別マニュアルとして、この節に記します。
 
- * [wiki:SPCref_dynamic_join 動的結合]
- * [wiki:SPCref_restrict 呼出し制限]
-
+ * :ref:`tecsspc-dynamic`
+ * :ref:`tecsspc-restrict`
