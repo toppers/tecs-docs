@@ -26,7 +26,7 @@ class TecsCdlLexer(CLexer):
             (words((
                 'celltype', 'cell', 'composite', 'signature', 'call', 'entry',
                 'attr', 'var', 'in', 'out', 'size', 'count', 'string', 'const',
-                'factory', 'FACTORY', 'C_EXP',
+                'factory', 'FACTORY', 'C_EXP', 'namespace', 'region',
                 'write'
 
                 'asm', '__asm__', 'auto', 'bool', '_Bool', 'char', '_Complex',
