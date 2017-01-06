@@ -21,6 +21,7 @@ TECS マニュアル
    tecs/CDLref_index
    tecs/IMPref_index
    asp3/index
+   mruby-on-ev3rt+tecs/index
    tecs/Plugin_index
    tecs/CMDref
    tecs/Ref
