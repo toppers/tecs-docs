@@ -75,13 +75,17 @@ class TECSObject(ObjectDescription):
         raise NotImplementedError("must be implemented in subclass")
 
     def add_target_and_index(self, name, sig, signode):
-        targetname = 'c.' + name
+        targetname = 'tecs.' + name
 
         if targetname not in self.state.document.ids:
+            signode['names'].append(targetname)
+            signode['ids'].append(targetname)
+            signode['first'] = (not self.names)
+            self.state.document.note_explicit_target(signode)
             inv = self.env.domaindata['tecs']['objects']
             if name in inv:
                 self.state_machine.reporter.warning(
-                    'duplicate C object description of %s, ' % name +
+                    'duplicate TECS object description of %s, ' % name +
                     'other instance in ' + self.env.doc2path(inv[name][0]),
                     line=self.lineno)
             inv[name] = (self.env.docname, self.objtype)
@@ -417,7 +421,7 @@ class TECSDomain(Domain):
             return []
         obj = self.data['objects'][target]
         return [('tecs:' + self.role_for_objtype(obj[1]),
-                 make_refnode(builder, fromdocname, obj[0], 'c.' + target,
+                 make_refnode(builder, fromdocname, obj[0], 'tecs.' + target,
                               contnode, target))]
 
     def get_objects(self):
