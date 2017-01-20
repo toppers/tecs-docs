@@ -60,6 +60,8 @@
 
 エラー通知が失敗した場合、エラーは無視され、何も行われません [:toppers3-tag:`NGKI3691`]。
 
+.. _asp3tecs-timeeventnotifier-usage:
+
 使用方法
 --------
 
@@ -315,65 +317,67 @@
 
   本コンポーネントは `CRE_ALM` 静的API [:toppers3-tag:`NGKI2487`] によりアラーム通知の生成を行います。
 
-  .. tecs:attr:: ID id
+  .. attention::
+
+    通知方法に関係する属性はTECSのコンポーネントモデル上はすべて「省略可能」として定義されていますが、実際には専用のTECSジェネレータプラグインの働きにより、複雑な条件によって指定が制約されています。可能な指定方法については\ :ref:`asp3tecs-timeeventnotifier-usage`\ のセクションを参照して下さい。
+
+  .. tecs:attr:: ID id = C_EXP("ALMID_$id$")
 
     アラーム通知のID番号の識別子 (詳しくは :ref:`asp3tecs-id` を参照) を `C_EXP` で囲んで指定します (省略可能)。
 
-    指定しない場合、 ``ALMID_`` で始まる識別子が自動生成され、使用されます。
-
-  .. tecs:attr:: ATR attribute
+  .. tecs:attr:: ATR attribute = C_EXP("TA_NULL")
 
     アラーム通知属性を `C_EXP` で囲んで指定します (省略可能)。ASP3では指定できる属性はありません [:toppers3-tag:`NGKI3423`] ので、指定できる値は ``C_EXP("TA_NULL")`` のみです [:toppers3-tag:`NGKI3424`]。
 
-  .. tecs:attr:: bool_t ignoreErrors
+  .. tecs:attr:: bool_t ignoreErrors = false
 
     通知方法としてエラーが発生する可能性があるもの (タスクの起動, タスクの起床, セマフォの資源の返却, イベントフラグのセット, データキューへの送信) を指定しているとき、エラー通知方法を指定しなかった場合、TECSジェネレータ実行時に警告を出力するかを指定します (省略可能)。
 
-    デフォルト値は ``false`` (エラー通知方法が未指定の場合に警告を出力する) です。
+    デフォルト値は ``false`` で、エラー通知方法が未指定の場合に警告を出力します。
 
-  .. tecs:attr:: intptr_t *setVariableAddress
+  .. tecs:attr:: intptr_t *setVariableAddress = 0
 
     通知方法として「変数の設定」を使用する場合に、設定先の変数を指すポインタを指定します。
 
     他の通知方法を使用する場合は、指定してはけません。
 
-  .. tecs:attr:: intptr_t setVariableValue
+  .. tecs:attr:: intptr_t setVariableValue = 0
 
     通知方法として「変数の設定」を使用する場合に、変数に設定する値を指定します。
 
     他の通知方法を使用する場合は、指定してはけません。
 
-  .. tecs:attr:: intptr_t *incrementedVariableAddress
+  .. tecs:attr:: intptr_t *incrementedVariableAddress = 0
 
     通知方法として「変数のインクリメント」を使用する場合に、インクリメント対象の変数を指すポインタを指定します。
 
     他の通知方法を使用する場合は、指定してはけません。
 
-  .. tecs:attr:: FLGPTN flagPattern
+  .. tecs:attr:: FLGPTN flagPattern = 0
 
     通知方法として「イベントフラグのセット」を使用する場合に、セットするフラグパターンを指定します。
 
     他の通知方法を使用する場合は、指定してはけません。
 
-  .. tecs:attr:: intptr_t dataqueueSentValue
+  .. tecs:attr:: intptr_t dataqueueSentValue = 0
 
     通知方法として「データキューへの送信」を使用する場合に、データキューに送信する値を指定します。
 
     他の通知方法を使用する場合は、指定してはけません。
 
-  .. tecs:attr:: intptr_t *setVariableAddressForError
+  .. tecs:attr:: intptr_t *setVariableAddressForError = 0
 
     エラー通知方法として「変数の設定」を使用する場合に、エラーコードを設定する先の変数を指すポインタを指定します。
 
     他の通知方法を使用する場合は、指定してはけません。
 
-  .. tecs:attr:: intptr_t *incrementedVariableAddressForError
+  .. tecs:attr:: intptr_t *incrementedVariableAddressForError = 0
 
     エラー通知方法として「変数のインクリメント」を使用する場合に、インクリメント対象の変数を指すポインタを指定します。
 
     他の通知方法を使用する場合は、指定してはけません。
 
-  .. tecs:attr:: FLGPTN flagPatternForError
+  .. tecs:attr:: FLGPTN flagPatternForError = 0
 
     エラー通知方法として「イベントフラグのセット」を使用する場合に、セットするフラグパターンを指定します。
 
@@ -449,15 +453,17 @@
 
   周期通知による通知は、基準時刻を基準として、 ``cyclePhase+cyclicTime*(n-1)`` (n=1, 2, ...) で表される時刻に行われます。基準時刻は属性 `TA_PHS` を指定した場合は周期通知の生成がされた時刻、指定されなかった場合は周期通知が最後に動作開始した時刻が用いられます [:toppers3-tag:`NGKI2365`]。
 
-  .. tecs:attr:: ID id
+  .. attention::
+
+    通知方法に関係する属性はTECSのコンポーネントモデル上はすべて「省略可能」として定義されていますが、実際には専用のTECSジェネレータプラグインの働きにより、複雑な条件によって指定が制約されています。可能な指定方法については\ :ref:`asp3tecs-timeeventnotifier-usage`\ のセクションを参照して下さい。
+
+  .. tecs:attr:: ID id = C_EXP("CYCID_$id$")
 
     周期通知のID番号の識別子 (詳しくは :ref:`asp3tecs-id` を参照) を `C_EXP` で囲んで指定します (省略可能)。
 
-    指定しない場合、 ``CYCID_`` で始まる識別子が自動生成され、使用されます。
+  .. tecs:attr:: ATR attribute = C_EXP("TA_NULL")
 
-  .. tecs:attr:: ATR attribute
-
-    周期通知属性を `C_EXP` で囲んで指定します [:toppers3-tag:`NGKI2370`] (省略可能)。複数個指定する場合、ビット毎の論理和演算子を用いて ``C_EXP("TA_STA | TA_PHS")`` のようにして指定します。何も指定しない場合は指定を省略するか、 ``0`` を指定します。
+    周期通知属性を `C_EXP` で囲んで指定します [:toppers3-tag:`NGKI2370`] (省略可能)。複数個指定する場合、ビット毎の論理和演算子を用いて ``C_EXP("TA_STA | TA_PHS")`` のようにして指定します。
 
     .. c:macro:: TA_STA
 
@@ -471,59 +477,59 @@
 
     周期通知の通知周期をマイクロ秒単位で指定します。
 
-  .. tecs:attr:: RELTIM cyclePhase
+  .. tecs:attr:: RELTIM cyclePhase = 0
 
-    周期通知の通知位相をマイクロ秒単位で指定します (省略可能)。デフォルト値は ``0`` です。
+    周期通知の通知位相をマイクロ秒単位で指定します (省略可能)。
 
-  .. tecs:attr:: bool_t ignoreErrors
+  .. tecs:attr:: bool_t ignoreErrors = false
 
     通知方法としてエラーが発生する可能性があるもの (タスクの起動, タスクの起床, セマフォの資源の返却, イベントフラグのセット, データキューへの送信) を指定しているとき、エラー通知方法を指定しなかった場合、TECSジェネレータ実行時に警告を出力するかを指定します (省略可能)。
 
-    デフォルト値は ``false`` (エラー通知方法が未指定の場合に警告を出力する) です。
+    デフォルト値は ``false`` で、エラー通知方法が未指定の場合に警告を出力します。
 
-  .. tecs:attr:: intptr_t *setVariableAddress
+  .. tecs:attr:: intptr_t *setVariableAddress = 0
 
     通知方法として「変数の設定」を使用する場合に、設定先の変数を指すポインタを指定します。
 
     他の通知方法を使用する場合は、指定してはけません。
 
-  .. tecs:attr:: intptr_t setVariableValue
+  .. tecs:attr:: intptr_t setVariableValue = 0
 
     通知方法として「変数の設定」を使用する場合に、変数に設定する値を指定します。
 
     他の通知方法を使用する場合は、指定してはけません。
 
-  .. tecs:attr:: intptr_t *incrementedVariableAddress
+  .. tecs:attr:: intptr_t *incrementedVariableAddress = 0
 
     通知方法として「変数のインクリメント」を使用する場合に、インクリメント対象の変数を指すポインタを指定します。
 
     他の通知方法を使用する場合は、指定してはけません。
 
-  .. tecs:attr:: FLGPTN flagPattern
+  .. tecs:attr:: FLGPTN flagPattern = 0
 
     通知方法として「イベントフラグのセット」を使用する場合に、セットするフラグパターンを指定します。
 
     他の通知方法を使用する場合は、指定してはけません。
 
-  .. tecs:attr:: intptr_t dataqueueSentValue
+  .. tecs:attr:: intptr_t dataqueueSentValue = 0
 
     通知方法として「データキューへの送信」を使用する場合に、データキューに送信する値を指定します。
 
     他の通知方法を使用する場合は、指定してはけません。
 
-  .. tecs:attr:: intptr_t *setVariableAddressForError
+  .. tecs:attr:: intptr_t *setVariableAddressForError = 0
 
     エラー通知方法として「変数の設定」を使用する場合に、エラーコードを設定する先の変数を指すポインタを指定します。
 
     他の通知方法を使用する場合は、指定してはけません。
 
-  .. tecs:attr:: intptr_t *incrementedVariableAddressForError
+  .. tecs:attr:: intptr_t *incrementedVariableAddressForError = 0
 
     エラー通知方法として「変数のインクリメント」を使用する場合に、インクリメント対象の変数を指すポインタを指定します。
 
     他の通知方法を使用する場合は、指定してはけません。
 
-  .. tecs:attr:: FLGPTN flagPatternForError
+  .. tecs:attr:: FLGPTN flagPatternForError = 0
 
     エラー通知方法として「イベントフラグのセット」を使用する場合に、セットするフラグパターンを指定します。
 
@@ -607,13 +613,11 @@
 
   本コンポーネントは `CRE_ALM` 静的API [:toppers3-tag:`NGKI2487`] によりアラーム通知の生成を行います。
 
-  .. tecs:attr:: ID id
+  .. tecs:attr:: ID id = C_EXP("ALMID_$id$")
 
     アラーム通知のID番号の識別子 (詳しくは :ref:`asp3tecs-id` を参照) を `C_EXP` で囲んで指定します (省略可能)。
 
-    指定しない場合、 ``ALMID_`` で始まる識別子が自動生成され、使用されます。
-
-  .. tecs:attr:: ATR attribute
+  .. tecs:attr:: ATR attribute = C_EXP("TA_NULL")
 
     アラーム通知属性を `C_EXP` で囲んで指定します (省略可能)。ASP3では指定できる属性はありません [:toppers3-tag:`NGKI3423`] ので、指定できる値は ``C_EXP("TA_NULL")`` のみです [:toppers3-tag:`NGKI3424`]。
 
@@ -637,15 +641,13 @@
 
   周期通知による通知は、基準時刻を基準として、 ``cyclePhase+cyclicTime*(n-1)`` (n=1, 2, ...) で表される時刻に行われます。基準時刻は属性 `TA_PHS` を指定した場合は周期通知の生成がされた時刻、指定されなかった場合は周期通知が最後に動作開始した時刻が用いられます [:toppers3-tag:`NGKI2365`]。
 
-  .. tecs:attr:: ID id
+  .. tecs:attr:: ID id = C_EXP("CYCID_$id$")
 
     周期通知のID番号の識別子 (詳しくは :ref:`asp3tecs-id` を参照) を `C_EXP` で囲んで指定します (省略可能)。
 
-    指定しない場合、 ``CYCID_`` で始まる識別子が自動生成され、使用されます。
+  .. tecs:attr:: ATR attribute = C_EXP("TA_NULL")
 
-  .. tecs:attr:: ATR attribute
-
-    周期通知属性を `C_EXP` で囲んで指定します [:toppers3-tag:`NGKI2370`] (省略可能)。複数個指定する場合、ビット毎の論理和演算子を用いて ``C_EXP("TA_STA | TA_PHS")`` のようにして指定します。何も指定しない場合は指定を省略するか、 ``0`` を指定します。
+    周期通知属性を `C_EXP` で囲んで指定します [:toppers3-tag:`NGKI2370`] (省略可能)。複数個指定する場合、ビット毎の論理和演算子を用いて ``C_EXP("TA_STA | TA_PHS")`` のようにして指定します。
 
     .. c:macro:: TA_STA
 
@@ -659,9 +661,9 @@
 
     周期通知の通知周期をマイクロ秒単位で指定します。
 
-  .. tecs:attr:: RELTIM cyclePhase
+  .. tecs:attr:: RELTIM cyclePhase = 0
 
-    周期通知の通知位相をマイクロ秒単位で指定します (省略可能)。デフォルト値は ``0`` です。
+    周期通知の通知位相をマイクロ秒単位で指定します (省略可能)。
 
   .. tecs:entry:: entry sCyclic eCyclic
 

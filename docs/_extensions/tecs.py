@@ -44,6 +44,8 @@ tecs_port_sig_re = re.compile(
 tecs_va_sig_re = re.compile(
     r'''^ (.+?)\b\s*         # type
           (\w+)              # var/attr name
+          ((?:\[[^]]*\])*)   # array
+          (?:\s*=\s*(.*))?   # default value
           \s*$               # end of signature
           ''', re.VERBOSE)
 
@@ -298,7 +300,7 @@ class TECSCellTypeVAObject(TECSCellTypeMemberObject):
         m = tecs_va_sig_re.match(sig)
         if m is None:
             raise ValueError
-        va_type, name = m.groups()
+        va_type, name, array_suffix, default_value = m.groups()
 
         celltype = self.env.ref_context.get('tecs:celltype')
         fullname = celltype + '::' + name
@@ -310,6 +312,13 @@ class TECSCellTypeVAObject(TECSCellTypeMemberObject):
         self._parse_c_type(signode[-1], va_type)
 
         signode += addnodes.desc_name(name, u'\xa0' + name)
+
+        if array_suffix != '':
+            signode += nodes.Text(' ' + array_suffix, array_suffix)
+
+        if default_value is not None:
+            signode += nodes.Text(' = ', ' = ')
+            signode += nodes.Text(default_value, default_value)
 
         return fullname
 
