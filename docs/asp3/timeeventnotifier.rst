@@ -244,14 +244,62 @@
 周期通知を制御する
 ^^^^^^^^^^^^^^^^^^^
 
-.. todo::
-    to be filled in
+`tCyclicNotifier` が提供する :tecs:entry:`~tCyclicNotifier::eCyclic` という名前の受け口を利用することにより、周期通知の制御及び状態の取得を行うことができます。
+
+.. code-block:: tecs-cdl
+  :caption: app.cdl
+
+  cell tCyclicNotifier Cyclic {};
+
+  celltype tMyCellType {
+      call sCyclic cCyclic;
+  };
+
+  cell tMyCellType MyCell {
+      cCyclic = Cyclic.eCyclic;
+  };
+
+.. code-block:: c
+  :caption: tMyCellType.c
+
+  // 周期通知を動作開始
+  cCyclic_start();
+
+  // 周期通知の現在状態の参照
+  T_RCYC cyclicStatus;
+  cCyclic_refer(&cyclicStatus);
+
+周期通知は非タスクコンテキストから操作することはできません。
 
 アラーム通知を制御する
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-.. todo::
-    to be filled in
+`tAlarmNotifier` が提供する :tecs:entry:`~tAlarmNotifier::eAlarm` という名前の受け口を利用することにより、アラーム通知の制御及び状態の取得を行うことができます。
+
+.. code-block:: tecs-cdl
+  :caption: app.cdl
+
+  cell tAlarmNotifier Alarm {};
+
+  celltype tMyCellType {
+      call sAlarm cAlarm;
+  };
+
+  cell tMyCellType MyCell {
+      cAlarm = Alarm.eAlarm;
+  };
+
+.. code-block:: c
+  :caption: tMyCellType.c
+
+  // アラーム通知を動作開始
+  cAlarm_start(1000000); // 1,000,000 マイクロ秒 (1秒) 後に通知
+
+  // アラーム通知の現在状態の参照
+  T_RALM alarmStatus;
+  cAlarm_refer(&alarmStatus);
+
+非タスクコンテキスト内では、:tecs:entry:`~tAlarmNotifier::eAlarm` の代わりに :tecs:entry:`~tAlarmNotifier::eiAlarm` を使用する必要があります。
 
 リファレンス
 ------------
@@ -368,7 +416,7 @@
 
 .. tecs:celltype:: tAlarmHandler
 
-  アラーム通知の生成、制御及び状態の取得を行うコンポーネントです。このセルタイプはハンドラ関数により通知を行う場合に使用します。他の通知方法を使用したい場合、 `tAlarmNotification` を使用して下さい。
+  アラーム通知の生成、制御及び状態の取得を行うコンポーネントです。このセルタイプはハンドラ関数により通知を行う場合に使用します。他の通知方法を使用したい場合、 `tAlarmNotifier` を使用して下さい。
 
   本コンポーネントは `CRE_ALM` 静的API [:toppers3-tag:`NGKI2487`] によりアラーム通知の生成を行います。
 
@@ -394,7 +442,7 @@
 
 .. tecs:celltype:: tCyclicHandler
 
-  周期通知の生成、制御及び状態の取得を行うコンポーネントです。このセルタイプはハンドラ関数により通知を行う場合に使用します。他の通知方法を使用したい場合、 `tCyclicNotification` を使用して下さい。
+  周期通知の生成、制御及び状態の取得を行うコンポーネントです。このセルタイプはハンドラ関数により通知を行う場合に使用します。他の通知方法を使用したい場合、 `tCyclicNotifier` を使用して下さい。
 
   本コンポーネントは `CRE_CYC` 静的API [:toppers3-tag:`NGKI3727`] により周期通知の生成を行います。
 
