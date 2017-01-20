@@ -52,7 +52,11 @@
 .. code-block:: tecs-cdl
   :caption: app.cdl
 
-  cell tMyCellType MyCell {};
+  cell tTask MyTask {};
+
+  celltype tMyAnotherCellType {
+      call sTask cTask;
+  };
 
   cell tMyAnotherCellType MyAnotherCell {
       cTask = MyTask.eTask;
