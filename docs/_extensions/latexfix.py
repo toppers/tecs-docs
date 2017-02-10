@@ -13,6 +13,12 @@ from sphinx.util.console import bold
 
 class MyLaTeXBuilder(LaTeXBuilder):
     name = 'latex-fixed'
+
+    def __init__(self, *args, **kwargs):
+        super(MyLaTeXBuilder, self).__init__(*args, **kwargs)
+
+        self.usepackages.append(('hyperref', 'dvipdfmx'))
+
     def write(self, *ignored):
         super(MyLaTeXBuilder, self).write(*ignored)
 
@@ -61,4 +67,3 @@ class MyLaTeXBuilder(LaTeXBuilder):
 
 def setup(app):
     app.add_builder(MyLaTeXBuilder)
-    app.add_latex_package('hyperref', 'dvipdfmx')

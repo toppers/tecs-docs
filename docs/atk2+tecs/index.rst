@@ -15,10 +15,10 @@ ATK2+TECS
    :maxdepth: 3
 
    basic
-   Task
-   Isr
-   Event
-   Resource
-   Counter
-   Alarm
+   task
+   isr
+   event
+   resource
+   counter
+   alarm
    

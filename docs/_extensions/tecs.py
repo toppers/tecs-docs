@@ -44,6 +44,8 @@ tecs_port_sig_re = re.compile(
 tecs_va_sig_re = re.compile(
     r'''^ (.+?)\b\s*         # type
           (\w+)              # var/attr name
+          ((?:\[[^]]*\])*)   # array
+          (?:\s*=\s*(.*))?   # default value
           \s*$               # end of signature
           ''', re.VERBOSE)
 
@@ -73,13 +75,17 @@ class TECSObject(ObjectDescription):
         raise NotImplementedError("must be implemented in subclass")
 
     def add_target_and_index(self, name, sig, signode):
-        targetname = 'c.' + name
+        targetname = 'tecs.' + name
 
         if targetname not in self.state.document.ids:
+            signode['names'].append(targetname)
+            signode['ids'].append(targetname)
+            signode['first'] = (not self.names)
+            self.state.document.note_explicit_target(signode)
             inv = self.env.domaindata['tecs']['objects']
             if name in inv:
                 self.state_machine.reporter.warning(
-                    'duplicate C object description of %s, ' % name +
+                    'duplicate TECS object description of %s, ' % name +
                     'other instance in ' + self.env.doc2path(inv[name][0]),
                     line=self.lineno)
             inv[name] = (self.env.docname, self.objtype)
@@ -298,7 +304,7 @@ class TECSCellTypeVAObject(TECSCellTypeMemberObject):
         m = tecs_va_sig_re.match(sig)
         if m is None:
             raise ValueError
-        va_type, name = m.groups()
+        va_type, name, array_suffix, default_value = m.groups()
 
         celltype = self.env.ref_context.get('tecs:celltype')
         fullname = celltype + '::' + name
@@ -310,6 +316,13 @@ class TECSCellTypeVAObject(TECSCellTypeMemberObject):
         self._parse_c_type(signode[-1], va_type)
 
         signode += addnodes.desc_name(name, u'\xa0' + name)
+
+        if array_suffix != '':
+            signode += nodes.Text(' ' + array_suffix, array_suffix)
+
+        if default_value is not None:
+            signode += nodes.Text(' = ', ' = ')
+            signode += nodes.Text(default_value, default_value)
 
         return fullname
 
@@ -408,7 +421,7 @@ class TECSDomain(Domain):
             return []
         obj = self.data['objects'][target]
         return [('tecs:' + self.role_for_objtype(obj[1]),
-                 make_refnode(builder, fromdocname, obj[0], 'c.' + target,
+                 make_refnode(builder, fromdocname, obj[0], 'tecs.' + target,
                               contnode, target))]
 
     def get_objects(self):

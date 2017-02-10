@@ -14,7 +14,7 @@
 * stop( brake )
 * rotate( deg, spd, blk )
 * count
-* reset_count
+* :ref:`reset_count <mruby-on-ev3rt-motor-reset-count>`
 
 initialize( port, type=:large ) -> nil
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -50,6 +50,8 @@ count -> Fixnum
 ^^^^^^^^^^^^^^^
 
 モータの各位置の値を返します．
+
+.. _mruby-on-ev3rt-motor-reset-count:
 
 reset_count -> nil
 ^^^^^^^^^^^^^^^^^^

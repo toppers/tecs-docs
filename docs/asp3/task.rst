@@ -86,15 +86,13 @@
 
   本コンポーネントは `CRE_TSK` 静的API [:toppers3-tag:`NGKI1023`] によりタスクの生成を行います。静的APIの引数の値には、一部を除き属性値が用いられます。
 
-  .. tecs:attr:: ID id
+  .. tecs:attr:: ID id = C_EXP("TSKID_$id$")
 
     タスクのID番号の識別子 (詳しくは :ref:`asp3tecs-id` を参照) を `C_EXP` で囲んで指定します (省略可能)。
 
-    指定しない場合、 ``TSKID_`` で始まる識別子が自動生成され、使用されます。
+  .. tecs:attr:: ATR attribute = C_EXP("TA_NULL")
 
-  .. tecs:attr:: ATR attribute
-
-    タスク属性 [:toppers3-tag:`NGKI3526`] を `C_EXP` で囲んで指定します。複数個指定する場合、ビット毎の論理和演算子を用いて ``C_EXP("TA_ACT | TA_NOACTQUE")`` のようにして指定します。何も指定しない場合は指定を省略するか、 ``0`` を指定します。
+    タスク属性 [:toppers3-tag:`NGKI3526`] を `C_EXP` で囲んで指定します (省略可能)。複数個指定する場合、ビット毎の論理和演算子を用いて ``C_EXP("TA_ACT | TA_NOACTQUE")`` のようにして指定します。
 
     .. c:macro:: TA_ACT
 
