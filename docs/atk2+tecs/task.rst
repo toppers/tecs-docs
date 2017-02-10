@@ -27,7 +27,6 @@
   cell tMyCellType MyCell {};
 
   cell tTask MyTask {
-      attribute = C_EXP("TA_ACT");
       stackSize = 1024;
       priority = 42;
 
@@ -66,7 +65,7 @@
 
   // タスクの現在状態の参照
   TaskRefType　taskStatus;
-  p_tskid;cTask_getState(&taskStatus);
+  cTask_getState(&taskStatus);
 
 リファレンス
 ------------
@@ -78,9 +77,9 @@
 
   タスクの生成、制御及び状態の取得を行うコンポーネントです。
 
-  .. tecs:attr:: TaskType idx
+  .. tecs:attr:: TaskType idx = C_EXP("$cell$")
 
-    タスクのIDの識別子を `C_EXP("$cell$");` で囲んで指定します。
+    タスクのIDの識別子を指定します。
 
     指定しない場合、 セルの名前が使用されます。
 
@@ -92,7 +91,7 @@
 
       タスクを自動起動します。
 
-    .. c:macro:: false
+    .. c:macro:: False
 
       タスクを自動起動しません。
 
@@ -104,11 +103,11 @@
 
     タスクの起動時優先度を指定します。
 
-  .. tecs:attr:: uint32_t activation;
+  .. tecs:attr:: uint32_t activation
     
     タスクの最大起動要求回数を指定します。
 
-  .. tecs:attr:: char_t *schedule;
+  .. tecs:attr:: char_t *schedule
     
     タスクのスケジューリングポリシを指定します。
 
@@ -128,7 +127,7 @@
 
     タスクが獲得するリソースを指定します（複数選択可能）。
 
-  .. tecs:attr:: uint32_t stackSize;
+  .. tecs:attr:: uint32_t stackSize
 
     タスク用のスタックサイズを指定します。
 
