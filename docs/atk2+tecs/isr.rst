@@ -56,7 +56,7 @@
 
   .. tecs:attr:: char_t *name = "$cell$"
 
-    割込みの名前をしていしましす。
+    割込みの名前を指定します。
     指定しない場合、セルの名前が使用されます。
 
   .. tecs:attr:: uint32_t category
