@@ -94,7 +94,7 @@
 
       有効
 
-    .. c:macro:: DISABLE
+   .. c:macro:: DISABLE
 
       無効 
 
@@ -110,4 +110,4 @@
   割込みハンドラを呼び出すためのシグニチャです。
 
   .. tecs:sigfunction:: void main(void)
-      todo
+      

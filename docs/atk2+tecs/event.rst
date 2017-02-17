@@ -21,7 +21,7 @@
   :caption: app.cdl
 
   celltype tMyCellType {
-  	　　call sEventMask cEventMask;
+      call sEventMask cEventMask;
   };
 
   cell tMyCellType MyCell {};
@@ -63,7 +63,6 @@
 
   
   .. tecs:sigfunction:: EventMaskType get(void)
-      todo
 
 
     
