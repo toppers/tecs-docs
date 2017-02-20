@@ -7,44 +7,58 @@
 インスタンスメソッド一覧
 ----------------
 
-* initialize( port, type=:large )
-* type
-* power = ( pwm )
-* power
-* stop( brake )
-* rotate( deg, spd, blk )
-* count
+* :ref:`initialize( port, type=:large ) <mruby-on-ev3rt-motor-initialize>`
+* :ref:`type <mruby-on-ev3rt-motor-type>`
+* :ref:`power = ( pwm ) <mruby-on-ev3rt-motor-power>`
+* :ref:`power <mruby-on-ev3rt-motor-power2>`
+* :ref:`stop( brake ) <mruby-on-ev3rt-motor-stop>`
+* :ref:`rotate( deg, spd, blk ) <mruby-on-ev3rt-motor-rotate>`
+* :ref:`count <mruby-on-ev3rt-motor-count>`
 * :ref:`reset_count <mruby-on-ev3rt-motor-reset-count>`
+
+.. _mruby-on-ev3rt-motor-initialize:
 
 initialize( port, type=:large ) -> nil
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 モータポートを設定します．
 
+.. _mruby-on-ev3rt-motor-type:
+
 type -> Symbol
 ^^^^^^^^^^^^^^
 
 モータポートのタイプの値を返します．
+
+.. _mruby-on-ev3rt-motor-power:
 
 power = ( pwm ) -> nil
 ^^^^^^^^^^^^^^^^^^^^^^
 
 モータのパワーを設定し，モータを回転させます．
 
+.. _mruby-on-ev3rt-motor-power2:
+
 power -> Fixnum
 ^^^^^^^^^^^^^^^
 
 モータのパワーの値を返します．
+
+.. _mruby-on-ev3rt-motor-stop:
 
 stop( brake=true ) -> nil
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 モータを停止させます．
 
+.. _mruby-on-ev3rt-motor-rotate:
+
 rotate( deg, spd, blk=false ) -> nil
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 モータを指定した角度だけ回転させます．
+
+.. _mruby-on-ev3rt-motor-count:
 
 count -> Fixnum
 ^^^^^^^^^^^^^^^
