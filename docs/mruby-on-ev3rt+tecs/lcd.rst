@@ -134,6 +134,7 @@ LCD.show_message_box ( title, msg ) -> nil
 
 **引数**
   `title` メッセージボックスのタイトル
+
   `msg` メッセージ
 
 **戻り値**
