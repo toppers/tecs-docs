@@ -17,7 +17,10 @@ mruby on ev3rt+tecs
    :maxdepth: 3
 
    basic
-   main
+   battery
+   button
+   led
+   speaker
    lcd
    motor
    rtos
