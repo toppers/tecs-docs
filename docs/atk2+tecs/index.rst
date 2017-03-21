@@ -15,6 +15,7 @@ ATK2+TECS
    :maxdepth: 3
 
    basic
+   kernel
    task
    isr
    event
