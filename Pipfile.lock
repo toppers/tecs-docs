@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "c73b720d9f88cbbdbcd6e7da5016188aa4148886307ae69bdb34bd0cc43da4d7"
+            "sha256": "6b31e0033daa79d1024358ed94684438245566c82688ee72bb25934e76205331"
         },
         "requires": {},
         "sources": [
@@ -60,6 +60,10 @@
             "hash": "sha256:7c35c5421a39bb82e58018febd90e3b6e5db34c5443aaaf742b3f33d4655f1c0",
             "version": "==0.1.2"
         },
+        "port-for": {
+            "hash": "sha256:b16a84bb29c2954db44c29be38b17c659c9c27e33918dec16b90d375cc596f1c",
+            "version": "==0.3.1"
+        },
         "pytz": {
             "hash": "sha256:a1ea35e87a63c7825846d5b5c81d23d668e8a102d3b1b465ce95afe1b3a2e065",
             "version": "==2016.10"
@@ -77,8 +81,8 @@
             "version": "==1.2.1"
         },
         "sphinx-autobuild": {
-            "hash": "sha256:120af8b893061ec72be4aa91b93455e6d0d4a80175c07a53819910c4d8974830",
-            "version": "==0.5.2"
+            "hash": "sha256:2f9262d7a35f80a18c3bcb03b2bf5a83f0a5e88b75ad922b3b1cee512c7e5cd2",
+            "version": "==0.6.0"
         },
         "sphinx_rtd_theme": {
             "hash": "sha256:46c2ca8b482b0398b9621bb5a8ec7c9c5c7226926e5363e18d744f5f0d39d78f",
