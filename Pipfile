@@ -1,0 +1,9 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+
+[packages]
+sphinx-autobuild = "==0.5.2"
+docutils = "==0.13.1"
+Sphinx = "==1.5.1"
+sphinx_rtd_theme = "==0.1.9"
