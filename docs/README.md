@@ -43,6 +43,22 @@ Building
 書き方
 ------
 
+### reStructuredText の書き方
+
+SphinxはreStructuredText (以下 reST) を利用したドキュメンテーションシステムです。この為、ドキュメントはreSTで記述しますが、SphinxではreSTの書き方について独自のガイドラインを定めています。この為基本的な書き方についてはreSTの仕様ではなく、Sphinxドキュメンテーションの[reStructuredText Primer](http://www.sphinx-doc.org/en/stable/rest.html)を参照することを推奨します。
+
+### 和文にインラインマークアップを適用する際のアドバイス
+
+通常、reST のインラインマークアップ (e.g., ``**strong emphasis**``) は両側にスペースを空ける必要があり、日本語等の[分かち書き](https://ja.wikipedia.org/wiki/わかち書き)を行わない言語では問題となります。
+
+この場合、スペースをバックスラッシュでエスケープすることによりこの制約を回避することができます。例えば、
+
+    使用方法の一つとして\ :ref:`タスクを通知先とする場合 <asp3tecs-timeeventnotifier-task>`\ を例として…
+
+このreSTテキストは次のように表示されます。
+
+> 使用方法の一つとしてタスクを通知先とする場合を例として…
+
 ### スタイルの微調整
 
 #### 表の背景色が交互に変わらないようにする
