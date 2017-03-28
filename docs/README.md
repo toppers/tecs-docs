@@ -31,6 +31,8 @@ TODO
 Building
 --------
 
+### HTML
+
 以下のコマンドでHTML版ドキュメントをビルドできます。
 
     make html
@@ -38,6 +40,18 @@ Building
 もしくは、ソースを変更する度に自動でビルドし、ブラウザで表示したい場合 (ライブプレビュー) は以下のコマンドを使用します。
 
     make livehtml
+
+### PDF
+
+以下のコマンドでPDF版ドキュメントをビルドできます。
+
+    make latexpdfja
+
+PDF出力にはpLaTeXが必要となります。予め `platex` にパスが通っていることを確認してください。
+
+note: 現時点では一部環境で組版に失敗しますが、発生条件や解決方法は不明です。
+
+Read the Docsで日本語テキストを含むドキュメントをPDF出力することは[できず](https://github.com/rtfd/readthedocs.org/issues/1959#issuecomment-175960871)、コミュニティーエフォートとマークされています。このため、PDF版についてはRead the Docsの外側で別途配布するという方針となりました。
 
 
 書き方
