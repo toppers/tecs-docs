@@ -854,14 +854,6 @@
     | データキューへの送信           | ``SendToDataqueueHandlerType``   | ``SendErrorCodeToDataqueueHandlerType`` |
     +--------------------------------+----------------------------------+-----------------------------------------+
 
-    各ハンドラタイプは次の属性を持ちます。
-
-    ``might_fail?`` (エラーが発生する可能性があるか？)
-
-        当該ハンドラタイプを使用して通知を行う場合に、オペレーティングシステムから\ :ref:`エラーが返される <asp3tecs-timeeventnotifier-error>`\ 可能性があるかを表すフラグです。
-
-    また、各ハンドラタイプはそれぞれ固有の属性・結合先セルタイプ名の組み合わせを持ちます。この組み合わせについては本セクションの冒頭の\ :ref:`asp3tecs-timeeventnotifier-usage`\ で網羅されています。
-
 通知先指定アルゴリズムは各タイムイベント通知セル (厳密に言うと、``NotifierPlugin``\ が適用されたセルタイプのセル) に対し、以下の手順を実施します。
 
 1. 以下のステップを各ハンドラに対して実行する。
@@ -877,8 +869,72 @@
 ユーザハンドラの呼び出し
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. todo::
-    to be filled in
+呼び口 :tecs:call:`~tAlarmNotifier::ciNotificationHandler` に :tecs:entry:`tTimeEventHandler::eiNotificationHandler` が結合された場合、ハンドラタイプ ``UserHandlerType`` が選択され、ユーザハンドラの呼び出しに必要な静的 API 記述が生成されます。
+
+ユーザの便宜のために単体でユーザハンドラ受け口に直接結合可能な `tAlarmHandler`, `tCyclicHandler` が用意されています。これらは複合セルタイプで、それぞれ `tAlarmNotifier`, `tCyclicNotifier` と、`tTimeEventHandler` が含まれ、:tecs:call:`tTimeEventHandler::ciHandlerBody` がエクスポートされており、ユーザはこれをアプリケーション定義のセルの受け口に結合するだけで使用することができます。
+
+ユーザハンドラの呼び出しに必要な静的 API の引数は以下の通りです [:toppers3-tag:`NGKI3722`]。
+
+.. c:type:: T_NFY_HDR
+
+    タイムイベントハンドラ呼出し用の付随情報を含む構造体。
+
+    .. c:member:: intptr_t exinf
+
+        タイムイベントハンドラに渡される引数。
+
+    .. c:member:: TMEHDR tmehdr
+
+        タイムイベントハンドラの先頭番地。
+
+従って :c:member:`T_NFY_HDR::tmehdr <~T_NFY_HDR.tmehdr>` にハンドラ関数を指定する訳ですが、ユーザハンドラの受け口関数を直接ここに指定することはできません。受け口関数のシグニチャは状況によって4通りに変化します。
+
+.. code-block:: c
+
+  void tCelltype_eiHandlerBody_main(CELLIDX idx); // tCelltypeが非singleton, 受け口が配列でない
+  void tCelltype_eiHandlerBody_main(void); // singleton, 受け口が配列でない
+  void tCelltype_eiHandlerBody_main(CELLIDX idx, int_t subscript); // 非singleton, 受け口配列
+  void tCelltype_eiHandlerBody_main(int_t subscript); // singleton, 受け口配列
+
+このため、カーネルからの呼出しを仲介するための関数が必要となります。この関数は\ **アダプタ関数**\ と呼ばれ、``NotifierPlugin`` によって生成されます。
+
+アダプタ関数は受け口関数を呼ぶ際、最大3個の情報 (受け口関数, ``idx``, ``subscript``) が必要となります。:c:member:`T_NFY_HDR::exinf <~T_NFY_HDR.exinf>` を介して引数を受け取ることができますが、これを介して直接渡せる引数は1個だけです。解決策には様々なものがありますが、``NotifierPlugin`` では引数のうち1個を :c:member:`T_NFY_HDR::exinf <~T_NFY_HDR.exinf>` を介して渡し、受け口関数と残った引数はその値ごとに関数を特殊化するアプローチを採用しています。このアプローチは最も時間・空間効率に優れていると考えられています。
+
+生成例を示します。以下はハンドラ受け口が非配列で、所属セルタイプが ``[singleton]`` では\ **ない**\ 場合の出力例です (紙面の節約のため、簡略化しています)。
+
+.. code-block:: c
+    :caption: tecsgen.cfg
+
+    CRE_CYC(ALMID_tCyclicHandler_CyclicHandler, { TA_NULL, { TNFY_HANDLER,
+      &tCT_CB_tab[1], tTimeEventHandler_tCyclicNotifier_tCT_eiHandlerBody_adap }, 50, 0 });
+
+.. code-block:: c
+    :caption: tTimeEventHandler.c
+
+    void
+    tTimeEventHandler_tCyclicNotifier_tCT_eiHandlerBody_adap
+    (intptr_t extinf) {
+        tCT_eiHandlerBody_main((CELLIDX)extinf);
+    }
+
+次はハンドラ受け口が配列で、周期通知が複数ある場合の出力です。アダプタ関数が特定のセル ``Cell`` に特殊化されていることに着目して下さい。
+
+.. code-block:: c
+    :caption: tecsgen.cfg
+
+    CRE_CYC(ALMID_tCyclicHandler_CyclicHandler, { TA_NULL, { TNFY_HANDLER,
+      0, tTimeEventHandler_tCyclicNotifier_tCT_eiHandlerBody_adap_Cell }, 50, 0 });
+    CRE_CYC(ALMID_tCyclicHandler_CyclicHandler, { TA_NULL, { TNFY_HANDLER,
+      1, tTimeEventHandler_tCyclicNotifier_tCT_eiHandlerBody_adap_Cell }, 50, 0 });
+
+.. code-block:: c
+    :caption: tTimeEventHandler.c
+
+    void
+    tTimeEventHandler_tCyclicNotifier_tCT_eiHandlerBody_adap_Cell
+    (intptr_t extinf) {
+        tCT_eiHandlerBody_main(&tCT_CB_tab[1], (int_t)extinf);
+    }
 
 サービスコール
 ^^^^^^^^^^^^^^
