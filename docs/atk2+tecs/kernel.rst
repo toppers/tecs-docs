@@ -34,7 +34,6 @@
       status = "EXTENDED";
       useGetServiceId = TRUE;
       useParameterAccess = TRUE;
-      useResourceScheduler = TRUE;
       StackMonitoring = TRUE;
       stackSize = 512;
       ScalabilityClass ="SC1";
