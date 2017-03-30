@@ -54,6 +54,46 @@
   アラームの名前を指定します。
   指定しない場合、セルの名前が使用されます。
 
+  .. tecs:attr:: uint8_t id = C_EXP("$ID$")
+  アラームのIDを指定します。
+
+  .. tecs:attr:: char_t *counter
+  アラームに接続するカウンタを指定します。
+
+  .. tecs:attr:: char_t *action
+  アラームアクションを指定します。
+
+    .. c:macro:: SETEVENT
+    イベントのセット。
+    .. c:macro:: ACTIVATETASK
+    タスクの起動。
+    .. c:macro:: ALARMCALLBACK
+    コールバックの呼び出し。
+
+  .. tecs:attr:: char_t *task = "OMISSIBLE"
+  アラームのアクションで起動するタスクを指定します。
+
+  .. tecs:attr:: char_t *event = "OMISSIBLE"
+  アラームのアクションでセットするイベントを指定します。
+
+  .. tecs:attr:: char_t *callbackName = "OMISSIBLE"
+  アラームのアクションで呼び出すコールバックを指定します。
+
+  .. tecs:attr:: bool_t autoStart
+  アラームの自動起動設定。
+    .. c:macro:: True
+    自動起動する。
+    .. c:macro:: False
+    自動起動しない。
+
+  .. tecs:attr:: uint32_t alarmTime = 0
+  アラーム自動起動時の初回満了時刻を指定します。
+
+  .. tecs:attr:: uint32_t cycleTime = 0
+  アラーム自動起動時の周期時間を指定します。0の場合は単発アラームとなります。
+
+  .. tecs:attr:: char_t *appMode[] = { "OMISSIBLE" }
+  自動起動するアプリケーションモードを指定します。
 
 シグニチャ
 ^^^^^^^^^^
