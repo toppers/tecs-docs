@@ -22,4 +22,5 @@ ATK2+TECS
    resource
    counter
    alarm
+   resource
    

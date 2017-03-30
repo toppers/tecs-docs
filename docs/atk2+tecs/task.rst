@@ -183,7 +183,54 @@
 
 
 .. tecs:signature:: sTaskISR2
+  タスクを操作するためのシグニチャISR2用
+
+  .. tecs:sigfunction:: StatusType activate(void)
+    タスクに対して起動要求を行います。
+    この関数は `ActivateTask(TalskType TaskID）` のラッパーです。
+    :return: 正常終了 (`E_OK`) またはエラーコード。 
+
+  .. tecs:sigfunction:: StatusType getId(out] TaskRefType p_tskid)
+    実行中のタスクIDを取得します。
+    結果はp_tskidに格納されます。
+    :return: 正常終了 (`E_OK`) またはエラーコード。
+    この関数は `GetTasklD(TaskRefType TasklD）` のラッパーです。
+
+
+  .. tecs:sigfunction:: StatusType getState([out] TaskStateRefType p_state)
+    タスクの状態を取得します。
+    結果はp_stateに格納されます。
+    :return: 正常終了 (`E_OK`) またはエラーコード。
+    この関数は `GetTaskState(TaskType TaskID,TaskStateRefType State）` のラッパーです。
+
+
+
 
 .. tecs:signature:: sTaskHook
+  タスクを操作するためのシグニチャ各Hook用
+
+  .. tecs:sigfunction:: StatusType getId(out] TaskRefType p_tskid)
+    実行中のタスクIDを取得します。
+    結果はp_tskidに格納されます。
+    :return: 正常終了 (`E_OK`) またはエラーコード。
+    この関数は `GetTasklD(TaskRefType TasklD）` のラッパーです。
+
+
+  .. tecs:sigfunction:: StatusType getState([out] TaskStateRefType p_state)
+    タスクの状態を取得します。
+    結果はp_stateに格納されます。
+    :return: 正常終了 (`E_OK`) またはエラーコード。
+    この関数は `GetTaskState(TaskType TaskID,TaskStateRefType State）` のラッパーです。
+
 
 .. tecs:signature:: sTaskEvent
+  イベントを操作するためのシグニチャTask用
+
+  .. tecs:sigfunction:: StatusType set([in] TaskType tskid, [in] EventMaskType mask)
+    TaskID で指定されたタスクに Mask で指定されたイベントを設定する。
+    :return: 正常終了 (`E_OK`) またはエラーコード。
+
+  .. tecs:sigfunction:: StatusType get([in] TaskType tskid, [out] EventMaskRefType p_mask)
+    TaskID で指定されたタスクが保持しているイベントマスク値を取得する。
+    :return: 正常終了 (`E_OK`) またはエラーコード。
+

@@ -54,3 +54,41 @@
   アラームの名前を指定します。
   指定しない場合、セルの名前が使用されます。
 
+
+シグニチャ
+^^^^^^^^^^
+
+.. tecs:signature:: sAlarm
+  アラームを操作するためのシグニチャ（Task,ISR2用）。
+
+  .. tecs:sigfunction:: StatusType getBase([out] AlarmBaseRefType p_info)
+    アラームの情報を取得する。
+    アラーム情報は p_info で示す構造体(AlarmBaseRefType)に格納される。
+
+  .. tecs:sigfunction::　StatusType get([out] TickRefType p_tick)
+    アラームが満了するまでのティック数を取得し、 p_tick の領域に格納する。
+
+  .. tecs:sigfunction:: StatusType setRelative([in] TickType incr, [in] TickType cycle)
+    アラームが現在のティックから incr で指定された相対時刻が経過した後に満了するよう設定する。
+    初回の満了後、cycle が 0 でない場合は、cycle の周期でアラームを満了させる。 
+
+  .. tecs:sigfunction:: StatusType setAbsolute([in] TickType start, [in] TickType cycle)
+    アラームが start で指定された絶対時刻に達した際に満了するよう設定する。
+    初回の満了後、cycle が 0 でない場合は cycle の周期でアラームを満了させる。
+
+  .. tecs:sigfunction::　StatusType cancel(void)
+    アラームを停止する。
+
+
+
+.. tecs:signature:: sAlarmHook
+  アラームを操作するためのシグニチャ（Hook用）。
+
+  .. tecs:sigfunction:: StatusType getBase([out] AlarmBaseRefType p_info)
+    アラームの情報を取得する。
+    アラーム情報は p_info で示す構造体(AlarmBaseRefType)に格納される。
+
+  .. tecs:sigfunction::　StatusType get([out] TickRefType p_tick)
+    アラームが満了するまでのティック数を取得し、 p_tick の領域に格納する。
+
+
