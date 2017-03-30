@@ -120,6 +120,8 @@
       incrementedVariableAddress = C_EXP("&foo_variable");
   };
 
+.. _asp3tecs-timeeventnotifier-task:
+
 タスクの起動・起床による通知
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -204,6 +206,8 @@
   例えば、 :tecs:attr:`~tAlarmNotifier::setVariableAddress` (設定先変数) と :tecs:attr:`~tAlarmNotifier::incrementedVariableAddress` (インクリメント先変数) を同時に指定することはできず、この指定があるときにTECSジェネレータを実行すると、エラーが発生します。
 
   通知方法を指定しなかった場合もエラーとなります。
+
+.. _asp3tecs-timeeventnotifier-error:
 
 エラー通知
 ^^^^^^^^^^^
@@ -766,8 +770,184 @@
     :param pk_cyclicHandlerStatus: 周期通知の現在状態を入れるメモリ領域へのポインタ
     :return: 正常終了 (`E_OK`) またはエラーコード。
 
+.. tecs:signature:: siNotificationHandler
+
+  タイムイベント通知の通知先を指定するためシグニチャです。
+  アプリケーション定義のセルではこのシグニチャの呼び口・受け口を定義しないで下さい。
+
+  このシグニチャに関数は含まれていません。
+
 実装の詳細
 ----------
 
-.. todo::
-    to be filled in
+タイムイベント通知の生成
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+`tAlarmNotifier` 及び `tCyclicNotifier` によるタイムイベント通知の生成は、パラメータの指定方法が特殊な為ファクトリ記述では行えず、代わりに TECS ジェネレータセルタイププラグイン ``NotifierPlugin`` を利用して行います。
+
+.. code-block:: tecs-cdl
+  :caption: kernel.cdl (抜粋)
+
+  [active, generate(NotifierPlugin,
+    "factory=\"CRE_ALM({{id}}, { {{attribute}}, {{{_handler_params_}}} });\", "
+    "output_file=tecsgen.cfg")]
+  celltype tAlarmNotifier {
+    /* ... */
+  };
+
+``NotifierPlugin`` は、対象のセルタイプに、タイムイベント通知固有の属性及び呼び口のセットが定義されていると仮定し、セルに指定された属性値と、プラグインの引数として指定されたテンプレート文字列を基にして、適切な静的 API 記述を生成します。以下はテンプレート文字列を抜粋したものです。
+
+.. code-block:: c
+  :caption: `tAlarmNotifier` のテンプレート文字列
+
+  CRE_ALM({{id}}, { {{attribute}}, {{{_handler_params_}}} });
+
+この中に含まれる二重中かっこで囲われた属性名 (e.g., ``{{id}}``) は、対応する属性値で置換されます。ただし、 ``{{_handler_params_}}`` は特別な扱いを受け、この後説明する通知先指定アルゴリズムにより、通知先を指定するパラメータ列で置換されます。
+例えば、タスクイベント通知の使用方法の一つとして\ :ref:`タスクを通知先とする場合 <asp3tecs-timeeventnotifier-task>`\ を例として挙げましたが、この場合は次の静的 API 記述が生成されます。
+
+.. code-block:: c
+  :caption: tecsgen.cfg
+
+  CRE_ALM(ALMID_tAlarmNotifier_Alarm, { TA_NULL, { TNFY_ACTTSK, TSKID_tTask_MyTask }});
+
+属性値は :tecs:attr:`~tAlarmNotifier::id` を除き、全て静的 API 記述の引数、または ``NotifierPlugin`` の入力としてのみ用いられます。この為、 ``[omit]`` 指定を行うことでこれらの属性値へのメモリ割り当てが行われないようにしています。
+
+通知先の指定
+^^^^^^^^^^^^
+
+タイムイベント通知の通知先としてカーネルオブジェクトを指定する場合、静的 API にはハンドラ関数ではなく、通知先オブジェクトの :ref:`ID <asp3tecs-id>` を直接指定することになります。 ``NotifierPlugin`` では、通知先オブジェクトの ID を呼び口 :tecs:call:`~tAlarmNotifier::ciNotificationHandler` 及び :tecs:call:`~tAlarmNotifier::ciErrorNotificationHandler` の結合先の属性値を読み取ることで、通知先を決定します。
+
+したがって、これらの呼び口に対応するシグニチャ `siNotificationHandler` は実行時には使用されず、この為、このシグニチャには関数は定義されていません。
+
+通知先指定アルゴリズムの役割は、セルの属性値・呼び口の結合先の組み合わせを、オペレーティングシステムの仕様で定義されている通知方法 [:toppers3-tag:`NGKI3689`] にマッピングし、その通知方法を指定するのに必要な適切なパラメータ列を生成することです。このアルゴリズムの説明に入る前に、いくつか用語を定義しておきましょう。
+
+ハンドラ
+    通常通知とエラー通知を、ここではハンドラと呼びます。例えば「各ハンドラに対応する呼び口がある」と言う場合、通常通知用の呼び口とエラー通知用の呼び口が個別に存在することを意味します。
+
+共通呼び口
+    通知先オブジェクトを結合するための呼び口 (ハンドラ毎に存在し、それぞれ :tecs:call:`~tAlarmNotifier::ciNotificationHandler` 及び :tecs:call:`~tAlarmNotifier::ciErrorNotificationHandler`) は共通呼び口と呼ばれます。
+
+    これらの呼び口が共通呼び口と呼ばれる理由は、通知先オブジェクトが種類が何であっても、全てこの呼び口に結合することで、通知先を指定することになる為です。
+
+ハンドラタイプ
+    通知方法を細分化し、通常通知とエラー通知の違いを表せるようにしたものです。
+
+    +--------------------------------+----------------------------------+-----------------------------------------+
+    |            通知方法            |          通常のハンドラ          |             エラーハンドラ              |
+    +================================+==================================+=========================================+
+    | なし                           | N/A                              | ``NullHandlerType``                     |
+    +--------------------------------+----------------------------------+-----------------------------------------+
+    | タイムイベントハンドラの呼出し | ``UserHandlerType``              | N/A                                     |
+    +--------------------------------+----------------------------------+-----------------------------------------+
+    | 変数の設定                     | ``SetVariableHandlerType``       | ``SetVariableToErrorCodeHandlerType``   |
+    +--------------------------------+----------------------------------+-----------------------------------------+
+    | 変数のインクリメント           | ``IncrementVariableHandlerType``                                           |
+    +--------------------------------+----------------------------------+-----------------------------------------+
+    | タスクの起動                   | ``ActivateTaskHandlerType``                                                |
+    +--------------------------------+----------------------------------+-----------------------------------------+
+    | タスクの起床                   | ``WakeUpTaskHandlerType``                                                  |
+    +--------------------------------+----------------------------------+-----------------------------------------+
+    | セマフォの資源の返却           | ``SignalSemaphoreHandlerType``                                             |
+    +--------------------------------+----------------------------------+-----------------------------------------+
+    | イベントフラグのセット         | ``SetEventflagHandlerType``                                                |
+    +--------------------------------+----------------------------------+-----------------------------------------+
+    | データキューへの送信           | ``SendToDataqueueHandlerType``   | ``SendErrorCodeToDataqueueHandlerType`` |
+    +--------------------------------+----------------------------------+-----------------------------------------+
+
+通知先指定アルゴリズムは各タイムイベント通知セル (厳密に言うと、``NotifierPlugin``\ が適用されたセルタイプのセル) に対し、以下の手順を実施します。
+
+1. 以下のステップを各ハンドラに対して実行する。
+
+    a) 現在処理中のハンドラに対応する共通呼び口の結合先のセルのIDとセルタイプ名を取得する。また、通知先指定に関わる属性の属性値及び、指定の有無 (いずれも ``[optional]`` として指定されているが、ここではそれは重要ではない) を取得する。
+    b) 各ハンドラタイプが持つ属性・結合先セルタイプ名の組み合わせと、実際に指定されたものを照合する。完全一致するものが存在しなかった場合、エラーを出力して当該セルの処理を終了する。
+    c) 現在処理中のハンドラ用の静的 API 記述のパラメータ列を含む断片を生成する。
+
+2. 通常のハンドラが「エラーが発生する可能性がある」ものとしてマークされている場合、エラーハンドラが指定されている (``NullHandlerType`` 以外のハンドラタイプである) ことを確認する。もし指定されておらず、:tecs:attr:`~tAlarmNotifier::ignoreErrors` が ``true`` ではない場合、警告を出力する。
+3. 通常のハンドラが「エラーが発生する可能性がある」ものとしてマークされていないのにも関わらず、エラーハンドラが指定されている場合、エラーを出力する。
+4. 前のステップで得られた静的 API 記述の断片と、指定されたテンプレート文字列を用い、最終的な静的 API 記述を生成する。
+
+ユーザハンドラの呼び出し
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+呼び口 :tecs:call:`~tAlarmNotifier::ciNotificationHandler` に :tecs:entry:`tTimeEventHandler::eiNotificationHandler` が結合された場合、ハンドラタイプ ``UserHandlerType`` が選択され、ユーザハンドラの呼び出しに必要な静的 API 記述が生成されます。
+
+ユーザの便宜のために単体でユーザハンドラ受け口に直接結合可能な `tAlarmHandler`, `tCyclicHandler` が用意されています。これらは複合セルタイプで、それぞれ `tAlarmNotifier`, `tCyclicNotifier` と、`tTimeEventHandler` が含まれ、:tecs:call:`tTimeEventHandler::ciHandlerBody` がエクスポートされており、ユーザはこれをアプリケーション定義のセルの受け口に結合するだけで使用することができます。
+
+ユーザハンドラの呼び出しに必要な静的 API の引数は以下の通りです [:toppers3-tag:`NGKI3722`]。
+
+.. c:type:: T_NFY_HDR
+
+    タイムイベントハンドラ呼出し用の付随情報を含む構造体。
+
+    .. c:member:: intptr_t exinf
+
+        タイムイベントハンドラに渡される引数。
+
+    .. c:member:: TMEHDR tmehdr
+
+        タイムイベントハンドラの先頭番地。
+
+従って :c:member:`T_NFY_HDR::tmehdr <~T_NFY_HDR.tmehdr>` にハンドラ関数を指定する訳ですが、ユーザハンドラの受け口関数を直接ここに指定することはできません。受け口関数のシグニチャは状況によって4通りに変化します。
+
+.. code-block:: c
+
+  void tCelltype_eiHandlerBody_main(CELLIDX idx); // tCelltypeが非singleton, 受け口が配列でない
+  void tCelltype_eiHandlerBody_main(void); // singleton, 受け口が配列でない
+  void tCelltype_eiHandlerBody_main(CELLIDX idx, int_t subscript); // 非singleton, 受け口配列
+  void tCelltype_eiHandlerBody_main(int_t subscript); // singleton, 受け口配列
+
+このため、カーネルからの呼出しを仲介するための関数が必要となります。この関数は\ **アダプタ関数**\ と呼ばれ、``NotifierPlugin`` によって生成されます。
+
+アダプタ関数は受け口関数を呼ぶ際、最大3個の情報 (受け口関数, ``idx``, ``subscript``) が必要となります。:c:member:`T_NFY_HDR::exinf <~T_NFY_HDR.exinf>` を介して引数を受け取ることができますが、これを介して直接渡せる引数は1個だけです。解決策には様々なものがありますが、``NotifierPlugin`` では引数のうち1個を :c:member:`T_NFY_HDR::exinf <~T_NFY_HDR.exinf>` を介して渡し、受け口関数と残った引数はその値ごとに関数を特殊化するアプローチを採用しています。このアプローチは最も時間・空間効率に優れていると考えられています。
+
+生成例を示します。以下はハンドラ受け口が非配列で、所属セルタイプが ``[singleton]`` では\ **ない**\ 場合の出力例です (紙面の節約のため、簡略化しています)。
+
+.. code-block:: c
+    :caption: tecsgen.cfg
+
+    CRE_CYC(ALMID_tCyclicHandler_CyclicHandler, { TA_NULL, { TNFY_HANDLER,
+      &tCT_CB_tab[1], tTimeEventHandler_tCyclicNotifier_tCT_eiHandlerBody_adap }, 50, 0 });
+
+.. code-block:: c
+    :caption: tTimeEventHandler.c
+
+    void
+    tTimeEventHandler_tCyclicNotifier_tCT_eiHandlerBody_adap
+    (intptr_t extinf) {
+        tCT_eiHandlerBody_main((CELLIDX)extinf);
+    }
+
+次はハンドラ受け口が配列で、周期通知が複数ある場合の出力です。アダプタ関数が特定のセル ``Cell`` に特殊化されていることに着目して下さい。
+
+.. code-block:: c
+    :caption: tecsgen.cfg
+
+    CRE_CYC(ALMID_tCyclicHandler_CyclicHandler, { TA_NULL, { TNFY_HANDLER,
+      0, tTimeEventHandler_tCyclicNotifier_tCT_eiHandlerBody_adap_Cell }, 50, 0 });
+    CRE_CYC(ALMID_tCyclicHandler_CyclicHandler, { TA_NULL, { TNFY_HANDLER,
+      1, tTimeEventHandler_tCyclicNotifier_tCT_eiHandlerBody_adap_Cell }, 50, 0 });
+
+.. code-block:: c
+    :caption: tTimeEventHandler.c
+
+    void
+    tTimeEventHandler_tCyclicNotifier_tCT_eiHandlerBody_adap_Cell
+    (intptr_t extinf) {
+        tCT_eiHandlerBody_main(&tCT_CB_tab[1], (int_t)extinf);
+    }
+
+サービスコール
+^^^^^^^^^^^^^^
+
+:tecs:entry:`~tCyclicNotifier::eCyclic` 、 :tecs:entry:`~tAlarmNotifier::eAlarm` 及び :tecs:entry:`~tAlarmNotifier::eiAlarm` に対する呼出しは、以下に示すような受け口関数により TOPPERS/ASP3 カーネルのサービスコールへの呼出しに変換されます。
+
+.. code-block:: c
+  :caption: tAlarmNotifier_inline.h
+
+  Inline ER
+  eAlarm_start(CELLIDX idx, RELTIM alarmTime)
+  {
+    CELLCB  *p_cellcb = GET_CELLCB(idx);
+    return(sta_alm(ATTR_id, alarmTime));
+  }
+

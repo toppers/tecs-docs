@@ -1,0 +1,101 @@
+{
+    "_meta": {
+        "hash": {
+            "sha256": "6b31e0033daa79d1024358ed94684438245566c82688ee72bb25934e76205331"
+        },
+        "requires": {},
+        "sources": [
+            {
+                "url": "https://pypi.python.org/simple",
+                "verify_ssl": true
+            }
+        ]
+    },
+    "default": {
+        "Babel": {
+            "hash": "sha256:3318ed2960240d61cbc6558858ee00c10eed77a6508c4d1ed8e6f7f48399c975",
+            "version": "==2.3.4"
+        },
+        "Jinja2": {
+            "hash": "sha256:a7b7438120dbe76a8e735ef7eba6048eaf4e0b7dbc530e100812f8ec462a4d50",
+            "version": "==2.9.5"
+        },
+        "MarkupSafe": {
+            "hash": "sha256:a6be69091dac236ea9c6bc7d012beab42010fa914c459791d627dad4910eb665",
+            "version": "==1.0"
+        },
+        "PyYAML": {
+            "hash": "sha256:592766c6303207a20efc445587778322d7f73b161bd994f227adaa341ba212ab",
+            "version": "==3.12"
+        },
+        "Pygments": {
+            "hash": "sha256:78f3f434bcc5d6ee09020f92ba487f95ba50f1e3ef83ae96b9d5ffa1bab25c5d",
+            "version": "==2.2.0"
+        },
+        "Sphinx": {
+            "hash": "sha256:2809b2ab81906483b47c9d7e28740e3b69c160617f33d7aa11dc4ae376fd04d9",
+            "version": "==1.5.3"
+        },
+        "alabaster": {
+            "hash": "sha256:2eef172f44e8d301d25aff8068fddd65f767a3f04b5f15b0f4922f113aa1c732",
+            "version": "==0.7.10"
+        },
+        "argh": {
+            "hash": "sha256:a9b3aaa1904eeb78e32394cd46c6f37ac0fb4af6dc488daa58971bdc7d7fcaf3",
+            "version": "==0.26.2"
+        },
+        "docutils": {
+            "hash": "sha256:cb3ebcb09242804f84bdbf0b26504077a054da6772c6f4d625f335cc53ebf94d",
+            "version": "==0.13.1"
+        },
+        "imagesize": {
+            "hash": "sha256:6ebdc9e0ad188f9d1b2cdd9bc59cbe42bf931875e829e7a595e6b3abdc05cdfb",
+            "version": "==0.7.1"
+        },
+        "livereload": {
+            "hash": "sha256:422de10d7ea9467a1ba27cbaffa84c74b809d96fb1598d9de4b9b676adf35e2c",
+            "version": "==2.5.1"
+        },
+        "pathtools": {
+            "hash": "sha256:7c35c5421a39bb82e58018febd90e3b6e5db34c5443aaaf742b3f33d4655f1c0",
+            "version": "==0.1.2"
+        },
+        "port-for": {
+            "hash": "sha256:b16a84bb29c2954db44c29be38b17c659c9c27e33918dec16b90d375cc596f1c",
+            "version": "==0.3.1"
+        },
+        "pytz": {
+            "hash": "sha256:a1ea35e87a63c7825846d5b5c81d23d668e8a102d3b1b465ce95afe1b3a2e065",
+            "version": "==2016.10"
+        },
+        "requests": {
+            "hash": "sha256:1a720e8862a41aa22e339373b526f508ef0c8988baf48b84d3fc891a8e237efb",
+            "version": "==2.13.0"
+        },
+        "six": {
+            "hash": "sha256:0ff78c403d9bccf5a425a6d31a12aa6b47f1c21ca4dc2573a7e2f32a97335eb1",
+            "version": "==1.10.0"
+        },
+        "snowballstemmer": {
+            "hash": "sha256:9f3bcd3c401c3e862ec0ebe6d2c069ebc012ce142cce209c098ccb5b09136e89",
+            "version": "==1.2.1"
+        },
+        "sphinx-autobuild": {
+            "hash": "sha256:2f9262d7a35f80a18c3bcb03b2bf5a83f0a5e88b75ad922b3b1cee512c7e5cd2",
+            "version": "==0.6.0"
+        },
+        "sphinx_rtd_theme": {
+            "hash": "sha256:46c2ca8b482b0398b9621bb5a8ec7c9c5c7226926e5363e18d744f5f0d39d78f",
+            "version": "==0.1.9"
+        },
+        "tornado": {
+            "hash": "sha256:2898f992f898cd41eeb8d53b6df75495f2f423b6672890aadaf196ea1448edcc",
+            "version": "==4.4.2"
+        },
+        "watchdog": {
+            "hash": "sha256:7e65882adb7746039b6f3876ee174952f8eaaa34491ba34333ddf1fe35de4162",
+            "version": "==0.8.3"
+        }
+    },
+    "develop": {}
+}
