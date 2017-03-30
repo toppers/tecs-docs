@@ -61,6 +61,11 @@ Read the Docsで日本語テキストを含むドキュメントをPDF出力す�
 
 SphinxはreStructuredText (以下 reST) を利用したドキュメンテーションシステムです。この為、ドキュメントはreSTで記述しますが、SphinxではreSTの書き方について独自のガイドラインを定めています。この為基本的な書き方についてはreSTの仕様ではなく、Sphinxドキュメンテーションの[reStructuredText Primer](http://www.sphinx-doc.org/en/stable/rest.html)を参照することを推奨します。
 
+Sphinxには多くの有用な機能が含まれています。以下は本ドキュメントで特に有用と思われる機能のドキュメントの一覧です。
+
+- **ドメイン** - APIを記述するのに有用
+    - [Sphinx Domains/The C Domain](http://www.sphinx-doc.org/en/stable/domains.html#the-c-domain)
+
 ### 和文にインラインマークアップを適用する際のアドバイス
 
 通常、reST のインラインマークアップ (e.g., ``**strong emphasis**``) は両側にスペースを空ける必要があり、日本語等の[分かち書き](https://ja.wikipedia.org/wiki/わかち書き)を行わない言語では問題となります。
