@@ -14,7 +14,7 @@ mruby on ev3rt+tecs
 目次:
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 1
 
    basic
    battery
