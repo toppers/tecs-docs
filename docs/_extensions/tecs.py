@@ -307,6 +307,8 @@ class TECSCellTypeVAObject(TECSCellTypeMemberObject):
         va_type, name, array_suffix, default_value = m.groups()
 
         celltype = self.env.ref_context.get('tecs:celltype')
+        if celltype is None:
+            celltype = ''
         fullname = celltype + '::' + name
 
         sig_prefix = self.get_signature_prefix(sig)
