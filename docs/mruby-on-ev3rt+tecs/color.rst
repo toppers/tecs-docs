@@ -55,7 +55,7 @@
 
 .. _mruby-on-ev3rt-color-initialize:
 
-initialize ( port ) -> nil
+initialize ( port ) -> object
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 カラーセンサポートを設定する．

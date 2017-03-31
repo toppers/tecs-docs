@@ -33,7 +33,7 @@
 
 .. _mruby-on-ev3rt-touch-initialize:
 
-initialize ( port ) -> nil
+initialize ( port ) -> object
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 タッチセンサポートを設定する．

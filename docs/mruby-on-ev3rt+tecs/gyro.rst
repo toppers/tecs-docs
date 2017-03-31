@@ -36,7 +36,7 @@
 
 .. _mruby-on-ev3rt-gyro-initialize:
 
-initialize ( port ) -> nil
+initialize ( port ) -> object
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ジャイロセンサポートを設定する．

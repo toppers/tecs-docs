@@ -34,7 +34,7 @@
 
 .. _mruby-on-ev3rt-ultrasonic-initialize:
 
-initialize ( port ) -> nil
+initialize ( port ) -> object
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 超音波センサポートを設定する．

@@ -50,7 +50,7 @@
 
 .. _mruby-on-ev3rt-motor-initialize:
 
-initialize( port, type=:large ) -> nil
+initialize( port, type=:large ) -> object
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 モータポートを設定する．
