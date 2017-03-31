@@ -1,6 +1,6 @@
 .. _atk2+tecs-resource:
 
-カーネル ― `tResource`
+リソース ― `tResource`
 =================
 
 
