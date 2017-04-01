@@ -154,12 +154,12 @@
 
   タスクの制御、及び状態の取得を行うためのシグニチャです。
 
-  .. tecs:sigfunction:: StatusType activate(void)
+    .. tecs:sigfunction:: StatusType activate(void)
     タスクに対して起動要求を行います。
     この関数は `ActivateTask(TalskType TaskID）` のラッパーです。
     :return: 正常終了 (`E_OK`) またはエラーコード。
 
-  .. tecs:sigfunction:: StatusType terminate(void)
+    .. tecs:sigfunction:: StatusType terminate(void)
     タスクを終了します。
     この関数は `TermmateTask(void）` のラッパーです。
     :return: 正常終了 (`E_OK`) またはエラーコード。
