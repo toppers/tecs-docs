@@ -131,6 +131,7 @@
 ^^^^^^^^^^
 
 .. tecs:signature:: sKernelTask
+
   Task用のカーネル本体を呼び出すシグニチャ
 
   .. tecs:sigfunction:: StatusType schedule(void)
@@ -261,6 +262,7 @@
 
 
 .. tecs:signature:: sKernelPreTaskHook
+
   カーネル本体を呼び出すシグニチャ（PreTaskHook用）
 
   .. tecs:sigfunction:: AppModeType getActiveApplicationMode(void)  
@@ -354,7 +356,9 @@
 
 
 .. tecs:signature:: sEventHook
+
   .. tecs:sigfunction:: StatusType get([in] TaskType tskid, [out] EventMaskRefType p_mask)
+
     TaskID で指定されたタスクが保持しているイベントマスク値を取得する。
     :return: 正常終了 (`E_OK`) またはエラーコード。
 
