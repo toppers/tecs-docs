@@ -41,26 +41,39 @@
 ^^^^^^^^^^
 
 .. tecs:celltype:: tResource
+
 	リソースの生成を行うコンポーネントです。
 
+
   .. tecs:attr:: int8_t id = C_EXP("$ID$")
+
 	リソースのIDの識別子を指定します。
 
+
   .. tecs:attr:: char_t *name = "$cell$"
+
   	リソースの名前を指定します。
 
+
   .. tecs:attr:: char_t *property
+
   	リソースの種類を指定します。
 
 	.. c:macro:: STANDARD
+
 		標準リソース
+
     .. c:macro:: INTERNAL
+
     	内部リソース
+
 	.. c:macro:: LINKED
+
 		リンクリソース
 
 
   .. tecs:attr:: char_t *linkedResource
+
   	リンクリソースにおけるリンク先リソースを指定します。
 
 
@@ -69,10 +82,13 @@
 ^^^^^^^^^^
 
 .. tecs:signature:: sResource
+
 	リソースを操作するためのシグニチャ。
 
 	.. tecs:sigfunction:: StatusType get(void)
+
 		リソースを獲得する。
 
 	.. tecs:sigfunction:: StatusType release(void)
+
 		リソースを開放する。

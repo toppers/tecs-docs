@@ -88,11 +88,11 @@
 
     .. c:macro:: True
 
-    スタックモニタリングを使用します。
+      スタックモニタリングを使用します。
 
     .. c:macro:: False
 
-    スタックモニタリングを使用しません。
+      スタックモニタリングを使用しません。
 
   .. tecs:attr:: uint32_t stackSize
 
@@ -165,6 +165,7 @@
 
 
 .. tecs:signature:: sKernelISR1
+
   ISR1用のカーネル本体を呼び出すシグニチャ
 
   .. tecs:sigfunction:: void enableAllInterrupts(void)
@@ -191,6 +192,7 @@
 
 
 .. tecs:signature:: sKernelISR2
+
   ISR2用のカーネル本体を呼び出すシグニチャ
 
   .. tecs:sigfunction:: void enableAllInterrupts(void)
@@ -222,6 +224,7 @@
 
 
 .. tecs:signature:: sKernelErrorHook
+
   カーネル本体を呼び出すシグニチャ（ErrorHook用）
 
   .. tecs:sigfunction:: void resumeAllInterrupts(void)
@@ -240,6 +243,7 @@
 
 
 .. tecs:signature::　sKernelTaskHook
+
   カーネル本体を呼び出すシグニチャ（TaskHook用）
 
   .. tecs:sigfunction:: void resumeAllInterrupts(void)
@@ -268,6 +272,7 @@
 
 
 .. tecs:signature:: sKernelPostTaskHook
+
   カーネル本体を呼び出すシグニチャ（PostTaskHook用）
 
   .. tecs:sigfunction:: AppModeType getActiveApplicationMode(void)  
@@ -279,6 +284,7 @@
 
 
 .. tecs:signature:: sKernelStartupHook
+
   カーネル本体を呼び出すシグニチャ（StartupHook用）
 
   .. tecs:sigfunction:: AppModeType getActiveApplicationMode(void)  
@@ -294,6 +300,7 @@
 
 
 .. tecs:signature:: sKernelShutdownHook
+
   カーネル本体を呼び出すシグニチャ（ShutdownHook用）
 
   .. tecs:sigfunction:: AppModeType getActiveApplicationMode(void)  
@@ -305,6 +312,7 @@
 
 
 .. tecs:signature:: sKernelAlarmCallback
+
   カーネル本体を呼び出すシグニチャ（AlarmCallback用）
 
   .. tecs:sigfunction:: void resumeAllInterrupts(void)
@@ -317,6 +325,7 @@
 
 
 .. tecs:signature:: snKernel
+
   カーネル起動シグニチャ
 
   .. tecs:sigfunction:: void startOs([in] AppModeType mode)
