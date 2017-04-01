@@ -326,24 +326,6 @@
 
 
 
-.. tecs:signature:: sEventTask
-  イベントを操作するためのシグニチャ（Task用）
-
-  .. tecs:sigfunction:: StatusType set([in] TaskType tskid, [in] EventMaskType mask)
-    TaskID で指定されたタスクに Mask で指定されたイベントを設定する。
-    :return: 正常終了 (`E_OK`) またはエラーコード。
-
-  .. tecs:sigfunction:: StatusType clear([in] EventMaskType mask)
-    Mask で指定されたイベントをクリアする。
-    :return: 正常終了 (`E_OK`) またはエラーコード。
-
-  .. tecs:sigfunction:: StatusType get([in] TaskType tskid, [out] EventMaskRefType p_mask)
-    TaskID で指定されたタスクが保持しているイベントマスク値を取得する。
-    :return: 正常終了 (`E_OK`) またはエラーコード。
-
-  .. tecs:sigfunction:: StatusType wait([in] EventMaskType mask)
-    本関数を呼び出したタスクを待ち状態とする。
-    :return: 正常終了 (`E_OK`) またはエラーコード。
 
 
 
