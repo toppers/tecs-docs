@@ -47,22 +47,22 @@
 
 .. tecs:celltype:: tCouter
 
-  カウンタの生成を行うココンポーネントです。
+    カウンタの生成を行うココンポーネントです。
 
 
   .. tecs:attr:: uint8_t id = C_EXP("$ID$")
 
-  カウンタのIDの識別子を指定します。
+    カウンタのIDの識別子を指定します。
 
 
   .. tecs:attr:: char_t *name = C_EXP("$cell$")
 
-  カウンタの名前を指定します。
-  指定しない場合、セルの名前が使用されます。
+   カウンタの名前を指定します。
+   指定しない場合、セルの名前が使用されます。
 
 
   .. tecs:attr:: char_t   *counterType = "SOFTWARE"
-  カウンタのタイプを指定します。
+    カウンタのタイプを指定します。
 
     .. c:macro:: HARDWARE
 
@@ -77,17 +77,17 @@
 
   .. tecs:attr:: uint32_t minimumCycle
 
-  接続されたアラームがカウンタに指定できる最小周期値を指定します。
+    接続されたアラームがカウンタに指定できる最小周期値を指定します。
 
 
   .. tecs:attr:: uint32_t maximumAllowedValue
 
-  カウンタのティックの最大値を指定します。
+    カウンタのティックの最大値を指定します。
 
 
   .. tecs:attr::　uint32_t ticksPerBase
 
-  カウンタ固有の値（OSは不使用）
+    カウンタ固有の値（OSは不使用）
 
 
 シグニチャ
