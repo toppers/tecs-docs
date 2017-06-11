@@ -3,7 +3,7 @@
 TECS マニュアルのライセンス
 ========================================
 
-Copyright (C) 2016 by TOPPERS Projet TECS WG 
+Copyright (C) 2016-2017 by TOPPERS Projet TECS WG 
 
  上記著作権者は，以下の (1)〜(3) の条件を満たす場合に限り，本ドキュメ
  ント（本ドキュメントを改変したものを含む．以下同じ）を使用・複製・改
