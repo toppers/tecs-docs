@@ -18,9 +18,7 @@ ATK2+TECS
    kernel
    task
    isr
-   event
-   resource
    counter
    alarm
    resource
-   
+   schedule table   
