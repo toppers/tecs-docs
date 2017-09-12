@@ -14,6 +14,7 @@
 * :ref:`color <mruby-on-ev3rt-color-color>`
 * :ref:`refrect <mruby-on-ev3rt-color-reflect>`
 * :ref:`ambient <mruby-on-ev3rt-color-ambient>`
+* :ref:`rgb <mruby-on-ev3rt-color-rgb>`
 
 シンボル
 ------
@@ -113,6 +114,20 @@ ambient -> Fixnum
 
 ----
 
+.. _mruby-on-ev3rt-color-rgb:
+
+rgb -> Fixnum
+^^^^^^^^^^^^^^
+
+カラーセンサでRGB値を測定する．
+
+**引数**
+  なし
+
+**戻り値**
+  レッド（R)値，グリーン(G)値，ブルー(B)値
+
+----
 
 .. code-block:: ruby
   :caption: color_sample.rb
