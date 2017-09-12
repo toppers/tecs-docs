@@ -28,3 +28,4 @@ mruby on ev3rt+tecs
    gyro
    ultrasonic
    touch
+   sharedmemory
