@@ -7,8 +7,8 @@
 インスタンスメソッド一覧
 ----------------
 
-* :ref:`putVal(index, val) <mruby-on-ev3rt-sharedmemory-putVal>`
-* :ref:`getVal(index) <mruby-on-ev3rt-sharedmemory-getVal>`
+* :ref:`putVal　(index, val) <mruby-on-ev3rt-sharedmemory-putVal>`
+* :ref:`getVal　(index) <mruby-on-ev3rt-sharedmemory-getVal>`
 
 インスタンスメソッド
 ----------------
@@ -21,7 +21,8 @@ putVal ( index, val ) -> nil
 共有変数に値を入力する
 
 **引数**
-  `index`  共有変数のインデックス
+  ``index``  共有変数のインデックス
+
   `val`   　値
 
 **戻り値**
@@ -39,7 +40,7 @@ getVal ( index ) -> Fixnum
 共有変数の値を出力する
 
 **引数**
-  `index`  共有変数のインデックス
+  ``index``  共有変数のインデックス
 
 **戻り値**
   共有変数の値
