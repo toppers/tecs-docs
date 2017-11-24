@@ -23,6 +23,7 @@ TECS マニュアル
    asp3/index
    atk2+tecs/index
    mruby-on-ev3rt+tecs/index
+   mruby-on-gr-peach+tecs/index
    tecs/Plugin_index
    tecs/CMDref
    tecs/Ref
