@@ -1,4 +1,6 @@
 
+.. _gr-peach+tecs-howtobuild:
+
 ビルド方法
 ===============
 

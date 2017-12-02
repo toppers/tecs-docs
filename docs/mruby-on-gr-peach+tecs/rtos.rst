@@ -1,4 +1,6 @@
 
+.. _gr-peach+tecs-rtos:
+
 RTOS機能 - `RTOS`
 =================
 
