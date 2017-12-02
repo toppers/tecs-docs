@@ -24,6 +24,7 @@ mrubyの各VMには，TOPPERS/ASP3カーネルのタスクを割り当ててお�
    :maxdepth: 1
 
    howtobuild
+   guide
 
    rtos
    led
