@@ -23,5 +23,7 @@ mrubyの各VMには，TOPPERS/ASP3カーネルのタスクを割り当ててお�
 .. toctree::
    :maxdepth: 1
 
+   howtobuild
+
    rtos
    led
