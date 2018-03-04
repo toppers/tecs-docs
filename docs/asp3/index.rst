@@ -17,6 +17,7 @@ ASP3+TECS
    basic
    task
    eventflag
+   dataqueue
    timeeventnotifier
    semaphore
    prioritydataqueue
