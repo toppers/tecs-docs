@@ -16,4 +16,11 @@ ASP3+TECS
 
    basic
    task
+   eventflag
    timeeventnotifier
+   semaphore
+   prioritydataqueue
+   fixedsizememorypool
+   initializeroutine
+   terminateroutine
+   isr
