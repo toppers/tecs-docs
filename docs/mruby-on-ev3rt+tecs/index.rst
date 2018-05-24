@@ -29,3 +29,4 @@ mruby on ev3rt+tecs
    ultrasonic
    touch
    sharedmemory
+   balancer
