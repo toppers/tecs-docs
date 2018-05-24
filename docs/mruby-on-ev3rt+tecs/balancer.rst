@@ -21,7 +21,7 @@ Balancer.control -> Array
 左右モータPWM出力値を取得する．
 
 **戻り値**
-  1. 左モータPWM出力値
+  0. 左モータPWM出力値
   #. 右モータPWM出力値 
 
 ----
