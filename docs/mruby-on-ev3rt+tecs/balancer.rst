@@ -15,7 +15,7 @@
 
 .. _mruby-on-ev3rt-balancer-control:
 
-Balancer.control -> Array
+Balancer.control(forward,turn,gyrosensor,gyro_offset,angle_l,angle_r,batteryvoltage) -> [Int]
 ^^^^^^^^^^^^^^^^^^^^
 
 左右モータPWM出力値を取得する．
