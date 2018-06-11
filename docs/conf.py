@@ -55,9 +55,9 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'TECS & ASP3+TECS'
-copyright = '2016, TOPPERS Project'
-author = 'TOPPERS Project'
+project = 'TECS'
+copyright = '2016-2018, TOPPERS Project'
+author = 'TOPPERS Project TECS WG'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
