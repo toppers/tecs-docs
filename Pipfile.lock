@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "6b31e0033daa79d1024358ed94684438245566c82688ee72bb25934e76205331"
+            "sha256": "62f9c99bd1059373ea22ab4a50aec07ab55e28a29bb1d1ee50b63a61df95149e"
         },
         "pipfile-spec": 6,
         "requires": {},
@@ -117,6 +117,13 @@
             ],
             "version": "==1.1.1"
         },
+        "packaging": {
+            "hashes": [
+                "sha256:0c98a5d0be38ed775798ece1b9727178c4469d9c3b4ada66e8e6b7849f8732af",
+                "sha256:9e1cbf8c12b1f1ce0bb5344b8d7ecf66a6f8a6e91bcb0c84593ed6d3ab5c4ab3"
+            ],
+            "version": "==19.0"
+        },
         "pathtools": {
             "hashes": [
                 "sha256:7c35c5421a39bb82e58018febd90e3b6e5db34c5443aaaf742b3f33d4655f1c0"
@@ -133,6 +140,13 @@
             "hashes": [
                 "sha256:5ffada19f6203563680669ee7f53b64dabbeb100eb51b61996085e99c03b284a",
                 "sha256:e8218dd399a61674745138520d0d4cf2621d7e032439341bc3f647bff125818d"
+            ],
+            "version": "==2.3.1"
+        },
+        "pyparsing": {
+            "hashes": [
+                "sha256:66c9268862641abcac4a96ba74506e594c884e3f57690a696d21ad8210ed667a",
+                "sha256:f6c5ef0d7480ad048c054c37632c67fca55299990fff127850181659eea33fc3"
             ],
             "version": "==2.3.1"
         },
@@ -182,10 +196,10 @@
         },
         "sphinx": {
             "hashes": [
-                "sha256:8e6a77a20b2df950de322fc32f3b508697d9d654fe984e3cc88f446a5b4c17c5",
-                "sha256:f13a1e175d8a780966df4c0611e310a85073e1b2ac2199bc3c3f3055677b3bf0"
+                "sha256:b53904fa7cb4b06a39409a492b949193a1b68cc7241a1a8ce9974f86f0d24287",
+                "sha256:c1c00fc4f6e8b101a0d037065043460dffc2d507257f2f11acaed71fd2b0c83c"
             ],
-            "version": "==1.5.1"
+            "version": "==1.8.4"
         },
         "sphinx-autobuild": {
             "hashes": [
@@ -196,11 +210,17 @@
         },
         "sphinx-rtd-theme": {
             "hashes": [
-                "sha256:273846f8aacac32bf9542365a593b495b68d8035c2e382c9ccedcac387c9a0a1",
-                "sha256:3c38d037713bd78043486eea5bf771d71ed697ec25c09e16f49e44887f7fe184",
-                "sha256:46c2ca8b482b0398b9621bb5a8ec7c9c5c7226926e5363e18d744f5f0d39d78f"
+                "sha256:00cf895504a7895ee433807c62094cf1e95f065843bf3acd17037c3e9a2becd4",
+                "sha256:728607e34d60456d736cc7991fd236afb828b21b82f956c5ea75f94c8414040a"
             ],
-            "version": "==0.1.9"
+            "version": "==0.4.3"
+        },
+        "sphinxcontrib-websupport": {
+            "hashes": [
+                "sha256:68ca7ff70785cbe1e7bccc71a48b5b6d965d79ca50629606c7861a21b206d9dd",
+                "sha256:9de47f375baf1ea07cdb3436ff39d7a9c76042c10a769c52353ec46e4e8fc3b9"
+            ],
+            "version": "==1.1.0"
         },
         "tornado": {
             "hashes": [
