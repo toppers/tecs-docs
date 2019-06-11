@@ -26,7 +26,7 @@ TECS マニュアル
    mruby-on-gr-peach+tecs/index
    tinet+tecs/index
    tlsf+tecs/index
-   tecs/Plugin_index
+   tecs/Plugin
    tecs/CMDref
    tecs/Ref
 

@@ -3,28 +3,29 @@
 
 各種カーネル対応プラグイン
 --------------------------
- * ATK1Plugin リファレンスマニュアル (to be written)
- * HRP2Pugin リファレンスマニュアル (to be written)
- * ASP3 (NotifierPlugin) マニュアル (to be written)
+ * ATK1Plugin プラグインリファレンス (to be written)
+ * HRP2Pugin プラグインリファレンス (to be written)
+ * ASP3 (NotifierPlugin) プラグインリファレンス (to be written)
 
 mruby ブリッジプラグイン
 ------------------------
- * MrubyBridgePlugin リファレンスマニュアル (to be written)
- * Mruby2CBridgePlugin リファレンスマニュアル (to be written)
-
+ * MrubyBridgePlugin プラグインリファレンス (to be written)
+ * Mruby2CBridgePlugin プラグインリファレンス (to be written)
+ * :ref:`MrubyInfoBridgePlugin`
+     
 トレースプラグイン
 ------------------
- * TracePlugin リファレンスマニュアル (to be written)
- * TLVTracePlugin リファレンスマニュアル (to be written)
+ * TracePlugin プラグインリファレンス (to be written)
+ * TLVTracePlugin プラグインリファレンス (to be written)
 
 RPC プラグイン
 --------------
- * TransparentRPcPlugin リファレンスマニュアル (to be written)
- * OpaqueRPcPlugin リファレンスマニュアル (to be written)
- * SharedRPCPlugin リファレンスマニュアル (to be written)
- * SharedOpaqueRPcPlugin リファレンスマニュアル (to be written)
+ * TransparentRPcPlugin プラグインリファレンス (to be written)
+ * OpaqueRPcPlugin プラグインリファレンス (to be written)
+ * SharedRPCPlugin プラグインリファレンス (to be written)
+ * SharedOpaqueRPcPlugin プラグインリファレンス (to be written)
 
 C 言語インタフェースプラグイン
 ------------------------------
- * C2TECSPugin リファレンスマニュアル (to be written)
- * TECS2CPugin リファレンスマニュアル (to be written)
+ * C2TECSPugin リファレンス (to be written)
+ * TECS2CPugin リファレンス (to be written)
