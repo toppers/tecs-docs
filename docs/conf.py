@@ -35,7 +35,6 @@ extensions = [
     'sphinx.ext.extlinks',
     'tecs',
     'tecslexer',
-    'latexfix'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -251,6 +250,7 @@ htmlhelp_basename = 'ASP3TECSdoc'
 
 # -- Options for LaTeX output ---------------------------------------------
 
+latex_engine = 'platex'
 latex_elements = {
      # The paper size ('letterpaper' or 'a4paper').
      #
