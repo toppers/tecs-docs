@@ -126,6 +126,9 @@ extlinks = {
     'toppers3-tag': ('https://www.toppers.jp/documents.html#tgki_spec.%s', '')
 }
 
+# Disable converting quotes to CJK brackets.
+smartquotes = False
+
 # -- Options for HTML output ----------------------------------------------
 
 import sphinx_rtd_theme
@@ -179,11 +182,6 @@ html_static_path = ['_static']
 # The empty string is equivalent to '%b %d, %Y'.
 #
 # html_last_updated_fmt = None
-
-# If true, SmartyPants will be used to convert quotes and dashes to
-# typographically correct entities.
-#
-# html_use_smartypants = True
 
 # Custom sidebar templates, maps document names to template names.
 #
@@ -299,12 +297,6 @@ latex_documents = [
 # Documents to append as an appendix to all manuals.
 #
 # latex_appendices = []
-
-# It false, will not define \strong, \code, 	itleref, \crossref ... but only
-# \sphinxstrong, ..., \sphinxtitleref, ... To help avoid clash with user added
-# packages.
-#
-# latex_keep_old_macro_names = True
 
 # If false, no module index is generated.
 #

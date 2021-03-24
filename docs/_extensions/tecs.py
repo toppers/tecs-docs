@@ -16,7 +16,7 @@ from sphinx import addnodes
 from sphinx.roles import XRefRole
 from sphinx.domains import Domain, ObjType
 from sphinx.directives import ObjectDescription
-from sphinx.locale import l_, _
+from sphinx.locale import _
 from sphinx.util.nodes import make_refnode
 from sphinx.util.docfields import Field, TypedField
 
@@ -68,8 +68,14 @@ class TECSObject(ObjectDescription):
     """Description of a TECS object.
     """
 
-    # stopwords imported from C
-    stopwords = CObject.stopwords
+    # stopwords copied from those of C
+    # (https://github.com/sphinx-doc/sphinx/blob/2f61ba8/sphinx/domains/c.py#L76)
+    stopwords = set((
+        'const', 'void', 'char', 'wchar_t', 'int', 'short',
+        'long', 'float', 'double', 'unsigned', 'signed', 'FILE',
+        'clock_t', 'time_t', 'ptrdiff_t', 'size_t', 'ssize_t',
+        'struct', '_Bool',
+    ))
 
     def get_index_text(self, name):
         raise NotImplementedError("must be implemented in subclass")
@@ -365,15 +371,15 @@ class TECSDomain(Domain):
     name = 'tecs'
     label = 'TECS'
     object_types = {
-        'celltype':     ObjType(l_('cell type'),    'celltype'),
-        'cell':         ObjType(l_('cell'),         'cell'),
-        'call':         ObjType(l_('call port'),    'call'),
-        'entry':        ObjType(l_('entry port'),   'entry'),
-        'attribute':    ObjType(l_('attribute'),    'attr'),
-        'variable':     ObjType(l_('variable'),     'var'),
-        'signature':    ObjType(l_('signature'),    'signature'),
-        'sigfunction':  ObjType(l_('sigfunction'),  'sigfunction'),
-        'namespace':    ObjType(l_('namespace'),    'namespace'),
+        'celltype':     ObjType(_('cell type'),    'celltype'),
+        'cell':         ObjType(_('cell'),         'cell'),
+        'call':         ObjType(_('call port'),    'call'),
+        'entry':        ObjType(_('entry port'),   'entry'),
+        'attribute':    ObjType(_('attribute'),    'attr'),
+        'variable':     ObjType(_('variable'),     'var'),
+        'signature':    ObjType(_('signature'),    'signature'),
+        'sigfunction':  ObjType(_('sigfunction'),  'sigfunction'),
+        'namespace':    ObjType(_('namespace'),    'namespace'),
     }
     directives = {
         'celltype':     TECSCellTypeObject,
