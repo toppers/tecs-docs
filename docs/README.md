@@ -9,7 +9,7 @@ Getting Started
 
 ### Pipenv
 
-[Pipenv](https://github.com/kennethreitz/pipenv)はPythonプロジェクトの依存関係の管理を容易化する実験的なシステムです。Pipenvをインストール後、このディレクトリで以下のコマンドを実行して下さい。
+[Pipenv](https://github.com/kennethreitz/pipenv)はPythonプロジェクトの依存関係の管理を容易化するシステムです。Pipenvをインストール後、このディレクトリで以下のコマンドを実行して下さい。
 
     pipenv install
     pipenv shell
