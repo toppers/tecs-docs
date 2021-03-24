@@ -33,6 +33,7 @@ sys.path.insert(0, os.path.abspath('_extensions'))
 extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.extlinks',
+    'sphinx_search.extension', # readthedocs-sphinx-search
     'tecs',
     'tecslexer',
 ]
