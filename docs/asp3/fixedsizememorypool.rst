@@ -68,7 +68,7 @@
   :caption: tMyAnotherCellType.c
 
   // 固定長メモリブロックの獲得
-　void **p_block;
+  void **p_block;
   cFixedSizeMemoryPool_get(p_block);
 
   // 固定長メモリプールの現在状態の取得
