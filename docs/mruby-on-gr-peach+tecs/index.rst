@@ -1,7 +1,7 @@
 mruby on GR-PEACH+TECS
 ======================
 
-mruby on GR-PEACH+TECS は，組込み向けスクリプト言語「 **mruby** 」をルネサス社製マイコンボード **GR-PEACH** 上で動作させることができる開発プラットフォームです．
+mruby on GR-PEACH+TECS は，組込み向けスクリプト言語 mruby をルネサス社製マイコンボード GR-PEACH 上で動作させることができる開発プラットフォームです．
 
 本フレームワークは，TECS(TOPPERS Embedded Component System)を使用しているため，コンポーネントベース開発が可能です．
 
