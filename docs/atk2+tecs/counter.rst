@@ -27,7 +27,7 @@
   :caption: app.cdl
 
   cell tCounter MyCounter {
-  	  *counterType = "SOFTWARE"
+      *counterType = "SOFTWARE"
       minimumCycle = 10;
       maximumAllowedValue = "100";
   };

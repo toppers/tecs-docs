@@ -201,8 +201,8 @@
   :caption: kernel.cdl (抜粋)
 
   factory {
-		write( "tecsgen.cfg", "CRE_SEM(%s, { %s, %s, %s });", id, attribute, count, max);
-	};
+    write( "tecsgen.cfg", "CRE_SEM(%s, { %s, %s, %s });", id, attribute, count, max);
+  };
 
 最初の ``MySemaphore`` を用いた例の場合、以下のような静的API記述が生成されます。
 

@@ -33,7 +33,7 @@
     blockCount = TODO;
     blockSize = ;
     mpf = C_EXP("NULL");
-		mpfmb = C_EXP("NULL");
+    mpfmb = C_EXP("NULL");
   };
 
 .. code-block:: c
@@ -215,9 +215,9 @@
   :caption: kernel.cdl (抜粋)
 
   factory {
-		write("tecsgen.cfg","CRE_MPF( %s, {%s, %s, %s, %s, %s} );",
-			  id, attribute, blockCount, blockSize, mpf, mpfmb);
-	};
+    write("tecsgen.cfg","CRE_MPF( %s, {%s, %s, %s, %s, %s} );",
+        id, attribute, blockCount, blockSize, mpf, mpfmb);
+  };
 
 最初の ``MyFixedSizeMemoryPool`` を用いた例の場合、以下のような静的API記述が生成されます。
 

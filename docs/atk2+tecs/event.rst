@@ -27,7 +27,7 @@
   cell tMyCellType MyCell {};
 
   cell tEvent MyEvent {
-  	  eEventMask = MyCell.cEventMask;
+      eEventMask = MyCell.cEventMask;
   };
 
 .. code-block:: c

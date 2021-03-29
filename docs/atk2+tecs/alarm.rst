@@ -27,8 +27,8 @@
   cell tMyCellType MyCell {};
 
   cell tAlarm MyAlarm {
-  	  alarmTime = 10;
-  	  cycleTime = 10;
+      alarmTime = 10;
+      cycleTime = 10;
       cBody = MyCell.eAlarmHandlerBody;
   };
 

@@ -232,8 +232,8 @@
   :caption: kernel.cdl (抜粋)
 
   factory {
-  		write( "tecsgen.cfg", "CRE_PDQ( %s, { %s, %s, %s, %s} );",
-  			   id, attribute, count, maxDataPriority, pdqmb);
+      write( "tecsgen.cfg", "CRE_PDQ( %s, { %s, %s, %s, %s} );",
+           id, attribute, count, maxDataPriority, pdqmb);
   };
 
 最初の ``MyISR`` を用いた例の場合、以下のような静的API記述が生成されます。
