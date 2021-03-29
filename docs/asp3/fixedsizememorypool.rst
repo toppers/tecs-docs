@@ -220,11 +220,7 @@
 	};
 
 最初の ``MyFixedSizeMemoryPool`` を用いた例の場合、以下のような静的API記述が生成されます。
-attribute = C_EXP("TA_NULL");
-blockCount = TODO;
-blockSize = ;
-mpf = C_EXP("NULL");
-mpfmb = C_EXP("NULL");
+
 .. code-block:: c
   :caption: tecsgen.cfg
 
