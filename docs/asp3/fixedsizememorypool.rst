@@ -106,11 +106,11 @@
 
       送信待ち行列をタスクの優先度順にする。
 
-  .. tecs:attr:: uint32_t　blockCount
+  .. tecs:attr:: uint32_t blockCount
 
     TODO
 
-  .. tecs:attr:: uint32_t　blockSize
+  .. tecs:attr:: uint32_t blockSize
 
     TODO
 
@@ -226,7 +226,7 @@
 
   CRE_MPF( MPFID_tFixedSizeMemoryPool_MyFixedSizeMemoryPool, { TA_NULL, TODO, TODO, NULL, NULL });
 
-`tFixedSizeMemoryPool` が持つ属性は、 :tecs:attr:`~tFixedSizeMemoryPool::id` を除き実行時にはすべて未使用である為、``[omit]`` 指定を行うことでこれらの属性値へのメモリ割り当てが行われないようにしています。
+`tFixedSizeMemoryPool` が持つ属性は、 :tecs:attr:`~tFixedSizeMemoryPool::id` を除き実行時にはすべて未使用であるため、``[omit]`` 指定を行うことでこれらの属性値へのメモリ割り当てが行われないようにしています。
 
 
 サービスコール

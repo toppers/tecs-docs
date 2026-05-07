@@ -107,7 +107,7 @@
 
       送信待ち行列をタスクの優先度順にする。
 
-  .. tecs:attr:: uint32_t　count = 1;
+  .. tecs:attr:: uint32_t count = 1;
 
     終了処理ルーチンの容量。
 
@@ -199,7 +199,7 @@
 
   .. tecs:sigfunction:: ER initialize(void);
 
-    対象終了処理ルーチンを再終了処理します。対象終了処理ルーチンの終了処理ルーチン管理領域は、格納されているデータがない状態に終了処理されます。
+    対象終了処理ルーチンを再初期化します。対象終了処理ルーチンの終了処理ルーチン管理領域は、格納されているデータがない状態に初期化されます。
 
     この関数は `ini_pdq` サービスコール [:toppers3-tag:`NGKI1902`] のラッパーです。
 
@@ -248,7 +248,7 @@
 
   CRE_PDQ( PDQID_tTerminateRoutine_MyTerminateRoutine, { TA_NULL, 1, TMAX_DPRI, NULL });
 
-`tTerminateRoutine` が持つ属性は、 :tecs:attr:`~tTerminateRoutine::id` を除き実行時にはすべて未使用である為、``[omit]`` 指定を行うことでこれらの属性値へのメモリ割り当てが行われないようにしています。
+`tTerminateRoutine` が持つ属性は、 :tecs:attr:`~tTerminateRoutine::id` を除き実行時にはすべて未使用であるため、``[omit]`` 指定を行うことでこれらの属性値へのメモリ割り当てが行われないようにしています。
 
 
 サービスコール
