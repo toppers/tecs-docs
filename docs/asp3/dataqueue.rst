@@ -160,7 +160,7 @@
 
     :param data: 送信データ。
     :param timeout: タイムアウト時間。
-    :return:  またはエラーコード。 
+    :return: 正常終了（E_OK）またはエラーコード。
 
   .. tecs:sigfunction:: ER sendForce([in] intptr_t data)
 
@@ -195,26 +195,26 @@
 
     この関数は `trcv_dtq` サービスコール [:toppers3-tag:`NGKI1753`] のラッパーです。
 
-    :param p_data: 受信データを入れるメモリ領域へのポインタ。。
-    :param timeout: 。
+    :param p_data: 受信データを入れるメモリ領域へのポインタ。
+    :param timeout: タイムアウト時間。
     :return: 正常終了（E_OK）またはエラーコード。
 
   .. tecs:sigfunction:: ER initialize(void)
 
-    データキューの再初期。
+    データキューの再初期化。
 
     この関数は `ini_dtq` サービスコール [:toppers3-tag:`NGKI1772`] のラッパーです。
 
-    :return:  正常終了（E_OK）またはエラーコード。
+    :return: 正常終了（E_OK）またはエラーコード。
 
   .. tecs:sigfunction:: ER refer([out] T_RDTQ *pk_dataqueueStatus)
 
     データキューの状態参照。
 
-    この関数は `` サービスコール [:toppers3-tag:`NGKI1781`] のラッパーです。
+    この関数は `ref_dtq` サービスコール [:toppers3-tag:`NGKI1781`] のラッパーです。
 
     :param pk_dataqueueStatus: データキューの現在状態を入れるパケットへのポインタ。
-    :return:  正常終了（E_OK）またはエラーコード。
+    :return: 正常終了（E_OK）またはエラーコード。
 
 
 .. tecs:signature:: siDataqueue
@@ -261,7 +261,7 @@
 
   CRE_DTQ(DTQID__tDataqueue_Dataqueue, { TA_NULL, 1 ,C_EXP("NULL") });
 
-`tDataqueue` が持つ属性は、 :tecs:attr:`~tCRE_DTQ::id` を除き実行時にはすべて未使用である為、``[omit]`` 指定を行うことでこれらの属性値へのメモリ割り当てが行われないようにしています。
+`tDataqueue` が持つ属性は、 :tecs:attr:`~tCRE_DTQ::id` を除き実行時にはすべて未使用であるため、``[omit]`` 指定を行うことでこれらの属性値へのメモリ割り当てが行われないようにしています。
 
 
 サービスコール

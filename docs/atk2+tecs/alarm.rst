@@ -47,7 +47,7 @@
 
 .. tecs:celltype:: tAlarm
 
-  アラームの生成を行うココンポーネントです。
+  アラームの生成を行うコンポーネントです。
 
   .. tecs:attr:: char_t *name = C_EXP("$cell$")
 
@@ -139,7 +139,7 @@
     アラームの情報を取得する。
     アラーム情報は p_info で示す構造体(AlarmBaseRefType)に格納される。
 
-  .. tecs:sigfunction::　StatusType get([out] TickRefType p_tick)
+  .. tecs:sigfunction:: StatusType get([out] TickRefType p_tick)
 
     アラームが満了するまでのティック数を取得し、 p_tick の領域に格納する。
 
@@ -153,7 +153,7 @@
     アラームが start で指定された絶対時刻に達した際に満了するよう設定する。
     初回の満了後、cycle が 0 でない場合は cycle の周期でアラームを満了させる。
 
-  .. tecs:sigfunction::　StatusType cancel(void)
+  .. tecs:sigfunction:: StatusType cancel(void)
 
     アラームを停止する。
 
@@ -168,7 +168,7 @@
     アラームの情報を取得する。
     アラーム情報は p_info で示す構造体(AlarmBaseRefType)に格納される。
 
-  .. tecs:sigfunction::　StatusType get([out] TickRefType p_tick)
+  .. tecs:sigfunction:: StatusType get([out] TickRefType p_tick)
 
     アラームが満了するまでのティック数を取得し、 p_tick の領域に格納する。
 

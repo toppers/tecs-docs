@@ -70,7 +70,7 @@
 
   // セマフォの現在状態の参照
   T_RSEM *pk_semaphoreStatus;
-  cSemaphorek_refer(pk_semaphoreStatus);
+  cSemaphore_refer(pk_semaphoreStatus);
 
 なお、非タスクコンテキスト内では、:tecs:entry:`~tSemaphore::eSemaphore` の代わりに
 :tecs:entry:`~tSemaphore::eiSemaphore` を使用する必要があります。
@@ -103,7 +103,7 @@
 
       待ち行列をタスクの優先度順にする。
 
-  .. tecs:attr:: uint32_t　count
+  .. tecs:attr:: uint32_t count
 
     セマフォの初期資源数。
 
@@ -211,7 +211,7 @@
 
   CRE_SEM( SEMID_tSemaphore_MySemaphore, { TA_NULL, 0, 1 });
 
-`tSemaphore` が持つ属性は、 :tecs:attr:`~tSemaphore::id` を除き実行時にはすべて未使用である為、``[omit]`` 指定を行うことでこれらの属性値へのメモリ割り当てが行われないようにしています。
+`tSemaphore` が持つ属性は、 :tecs:attr:`~tSemaphore::id` を除き実行時にはすべて未使用であるため、``[omit]`` 指定を行うことでこれらの属性値へのメモリ割り当てが行われないようにしています。
 
 
 サービスコール

@@ -45,9 +45,9 @@
 セルタイプ
 ^^^^^^^^^^
 
-.. tecs:celltype:: tCouter
+.. tecs:celltype:: tCounter
 
-    カウンタの生成を行うココンポーネントです。
+    カウンタの生成を行うコンポーネントです。
 
 
   .. tecs:attr:: uint8_t id = C_EXP("$ID$")
@@ -85,7 +85,7 @@
     カウンタのティックの最大値を指定します。
 
 
-  .. tecs:attr::　uint32_t ticksPerBase
+  .. tecs:attr:: uint32_t ticksPerBase
 
     カウンタ固有の値（OSは不使用）
 

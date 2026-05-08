@@ -98,7 +98,7 @@
 
       送信待ち行列をタスクの優先度順にする。
 
-  .. tecs:attr:: uint32_t　count = 1;
+  .. tecs:attr:: uint32_t count = 1;
 
     初期化ルーチンの容量。
 
@@ -239,7 +239,7 @@
 
   CRE_PDQ( PDQID_tInitializeRoutine_MyInitializeRoutine, { TA_NULL, 1, TMAX_DPRI, NULL });
 
-`tInitializeRoutine` が持つ属性は、 :tecs:attr:`~tInitializeRoutine::id` を除き実行時にはすべて未使用である為、``[omit]`` 指定を行うことでこれらの属性値へのメモリ割り当てが行われないようにしています。
+`tInitializeRoutine` が持つ属性は、 :tecs:attr:`~tInitializeRoutine::id` を除き実行時にはすべて未使用であるため、``[omit]`` 指定を行うことでこれらの属性値へのメモリ割り当てが行われないようにしています。
 
 
 サービスコール
