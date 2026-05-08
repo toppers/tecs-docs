@@ -107,7 +107,7 @@
 
       送信待ち行列をタスクの優先度順にする。
 
-  .. tecs:attr:: uint32_t　count = 1;
+  .. tecs:attr:: uint32_t count = 1;
 
     優先度データキューの容量。
 
@@ -248,7 +248,7 @@
 
   CRE_PDQ( PDQID_tPriorityDataqueue_MyPriorityDataqueue, { TA_NULL, 1, TMAX_DPRI, NULL });
 
-`tPriorityDataqueue` が持つ属性は、 :tecs:attr:`~tPriorityDataqueue::id` を除き実行時にはすべて未使用である為、``[omit]`` 指定を行うことでこれらの属性値へのメモリ割り当てが行われないようにしています。
+`tPriorityDataqueue` が持つ属性は、 :tecs:attr:`~tPriorityDataqueue::id` を除き実行時にはすべて未使用であるため、``[omit]`` 指定を行うことでこれらの属性値へのメモリ割り当てが行われないようにしています。
 
 
 サービスコール

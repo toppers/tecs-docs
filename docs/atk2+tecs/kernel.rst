@@ -180,7 +180,7 @@
 
   .. tecs:sigfunction:: void enableAllInterrupts(void)
     
-    disableAllInterruptsによって設定された割込み禁止状態を割込み許可状態に戻す．。
+    disableAllInterruptsによって設定された割込み禁止状態を割込み許可状態に戻す。
 
   .. tecs:sigfunction:: void disableAllInterrupts(void)
     
@@ -198,7 +198,7 @@
     
     suspendOSInterrupts によって設定された割込み禁止状態を割込み許可状態に戻す。
 
-  .. tecs:sigfunction:: void suspendOsinterrupts(void)
+  .. tecs:sigfunction:: void suspendOSInterrupts(void)
     
     ターゲットの割込み状態を保存した後、C2ISRをすべて禁止しクリティカルセクションに入る。 
 
@@ -213,7 +213,7 @@
 
   .. tecs:sigfunction:: void enableAllInterrupts(void)
     
-    disableAllInterruptsによって設定された割込み禁止状態を割込み許可状態に戻す．。
+    disableAllInterruptsによって設定された割込み禁止状態を割込み許可状態に戻す。
 
   .. tecs:sigfunction:: void disableAllInterrupts(void)
     
@@ -231,7 +231,7 @@
     
     suspendOSInterrupts によって設定された割込み禁止状態を割込み許可状態に戻す。
 
-  .. tecs:sigfunction:: void suspendOsinterrupts(void)
+  .. tecs:sigfunction:: void suspendOSInterrupts(void)
     
     ターゲットの割込み状態を保存した後、C2ISRをすべて禁止しクリティカルセクションに入る。 
 
@@ -270,7 +270,7 @@
 
 
 
-.. tecs:signature::　sKernelTaskHook
+.. tecs:signature:: sKernelTaskHook
 
   カーネル本体を呼び出すシグニチャ（TaskHook用）
 
@@ -369,7 +369,7 @@
 
   .. tecs:sigfunction:: void startOs([in] AppModeType mode)
   
-  　　指定されたアプリケーションモードでOSを起動する。
+    指定されたアプリケーションモードでOSを起動する。
 
 
 

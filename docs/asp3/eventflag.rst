@@ -110,7 +110,7 @@ todo
 
       タスクの待ち解除時にイベントフラグをクリアする。
 
-  .. tecs:attr:: FLGPTN　flagPattern
+  .. tecs:attr:: FLGPTN flagPattern
 
     イベントフラグのビットパターン（符号なし整数）。
 
@@ -233,7 +233,7 @@ todo
   :caption: kernel.cdl (抜粋)
 
   factory {
-      write( "tecsgen.cfg", "CRE_FLG(%s, { %s, %s});",　id, attribute, flagPattern);
+      write( "tecsgen.cfg", "CRE_FLG(%s, { %s, %s});", id, attribute, flagPattern);
   };
 
 最初の ``MyEventflag`` を用いた例の場合、以下のような静的API記述が生成されます。
@@ -243,7 +243,7 @@ todo
 
   CRE_FLG( FLGID_tEventflag_MyEventflag, { TA_NULL, 0 });
 
-`tEventflag` が持つ属性は、 :tecs:attr:`~tEventflag::id` を除き実行時にはすべて未使用である為、``[omit]`` 指定を行うことでこれらの属性値へのメモリ割り当てが行われないようにしています。
+`tEventflag` が持つ属性は、 :tecs:attr:`~tEventflag::id` を除き実行時にはすべて未使用であるため、``[omit]`` 指定を行うことでこれらの属性値へのメモリ割り当てが行われないようにしています。
 
 
 サービスコール
