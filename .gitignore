@@ -13,3 +13,8 @@ Thumbs.db
 *.swp
 *.sublime-workspace
 *.sublime-project
+
+#
+.serena/
+TECS.pdf
+_build/
