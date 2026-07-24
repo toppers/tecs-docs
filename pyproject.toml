@@ -1,0 +1,21 @@
+[project]
+name = "tecs-docs"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "docutils==0.16",
+    "readthedocs-sphinx-search==0.1.0",
+    "setuptools<75",
+    "sphinx==3.5.3",
+    "jinja2<3.1",
+    "sphinxcontrib-applehelp==1.0.2",
+    "sphinxcontrib-devhelp==1.0.2",
+    "sphinxcontrib-htmlhelp==2.0.0",
+    "sphinxcontrib-jsmath==1.0.1",
+    "sphinxcontrib-qthelp==1.0.3",
+    "sphinxcontrib-serializinghtml==1.1.5",
+    "sphinx-autobuild==2021.3.14",
+    "sphinx-rtd-theme==0.5.1",
+]
