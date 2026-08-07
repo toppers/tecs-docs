@@ -245,11 +245,11 @@ wheels = [
 
 [[package]]
 name = "readthedocs-sphinx-search"
-version = "0.1.0"
+version = "0.3.2"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/b7/1f/0ae00451b10084bf6c2dfd53e83a8143e941260f09e2694dae5efde0db46/readthedocs-sphinx-search-0.1.0.tar.gz", hash = "sha256:5c0a90068c9c0ca639aa3a1c14a7fe8587b0332f2349bc3fd86b968ca82db238", size = 21219, upload-time = "2021-02-17T21:22:42.11Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/8f/96/0c51439e3dbc634cf5328ffb173ff759b7fc9abf3276e78bf71d9fc0aa51/readthedocs-sphinx-search-0.3.2.tar.gz", hash = "sha256:277773bfa28566a86694c08e568d5a648cd80f22826545555a764d6d20c365fb", size = 21949, upload-time = "2024-01-15T16:46:22.565Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/0b/5c/159d1c7ae251e958208f4e44db41a4a0dba1cf53bcafb55638485e341493/readthedocs_sphinx_search-0.1.0-py3-none-any.whl", hash = "sha256:7ed45d83b11af9681d5439529c7fbd4289c5be3f9ac4688436e28cb669da87a2", size = 26084, upload-time = "2021-02-17T21:22:39.849Z" },
+    { url = "https://files.pythonhosted.org/packages/04/3c/41bc9d7d4d936a73e380423f23996bee1691e17598d8a03c062be6aac640/readthedocs_sphinx_search-0.3.2-py3-none-any.whl", hash = "sha256:58716fd21f01581e6e67bf3bc02e79c77e10dc58b5f8e4c7cc1977e013eda173", size = 21379, upload-time = "2024-01-15T16:46:20.552Z" },
 ]
 
 [[package]]
@@ -417,7 +417,7 @@ dependencies = [
 requires-dist = [
     { name = "docutils", specifier = "==0.16" },
     { name = "jinja2", specifier = "<3.1" },
-    { name = "readthedocs-sphinx-search", specifier = "==0.1.0" },
+    { name = "readthedocs-sphinx-search", specifier = "==0.3.2" },
     { name = "setuptools", specifier = "<75" },
     { name = "sphinx", specifier = "==3.5.3" },
     { name = "sphinx-autobuild", specifier = "==2021.3.14" },

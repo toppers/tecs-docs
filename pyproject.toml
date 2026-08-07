@@ -6,7 +6,7 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "docutils==0.16",
-    "readthedocs-sphinx-search==0.1.0",
+    "readthedocs-sphinx-search==0.3.2",
     "setuptools<75",
     "sphinx==3.5.3",
     "jinja2<3.1",
