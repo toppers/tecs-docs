@@ -8,15 +8,20 @@ TECS (TOPPERS Embedded Component System) の日本語リファレンスマニュ
 
 ## セットアップ
 
+Python は `>=3.9,<3.10` 固定（`.python-version` / `pyproject.toml` の `requires-python`）。依存関係は `uv.lock` と `Pipfile.lock` の両方が管理されており、どちらのツールでもセットアップ可能。
+
 ```bash
-# Pipenv で依存パッケージをインストール（推奨）
+# uv を使う場合
+uv sync
+
+# Pipenv を使う場合
 pipenv install
 pipenv shell
 ```
 
 ## ビルドコマンド
 
-すべて `docs/` ディレクトリ内で実行する。
+すべて `docs/` ディレクトリ内で実行する（Windows で `make` が使えない場合はリポジトリルートの `make.bat` / `make.ps1` を使うと自動で `docs/` に移動して実行される）。
 
 ```bash
 cd docs
@@ -31,7 +36,17 @@ make livehtml
 make latexpdfja
 ```
 
-出力先: `docs/_build/html/`
+出力先: `docs/_build/html/`（PDF は `docs/_build/latex/`）。
+
+### Windows でのビルド
+
+- `docs/make.ps1`: `make.bat` 相当の PowerShell 版。`uv` があれば `uv run sphinx-build` を自動選択し、LaTeX/PDF ビルド用に Strawberry Perl / Git Perl の PATH を補完する。
+- `docs/makex.bat`: `html` / `latexpdfja` 専用。Sphinx が生成する `_build/latex/make.bat` は素の Windows では実行不可能なコマンド（Unix 系 `make`）に依存しているため、代わりに `platex → upmendex（なければ mendex）→ platex → dvipdfmx` のパイプラインを直接叩く。
+- リポジトリルートの `make.bat` は `docs/` へ移動して `makex.bat html` → `makex.bat latexpdfja` を順に呼び出すラッパー。
+
+## Read the Docs
+
+`.readthedocs.yaml` が `docs/conf.py` を Sphinx 設定として参照し、依存関係はルートの `requirements.txt`（`uv.lock` / `Pipfile.lock` とは別管理）からインストールされる。ローカルの依存追加時は `requirements.txt` も同期させること。
 
 ## ドキュメント構造
 
@@ -47,7 +62,9 @@ docs/
 ├── asp3/                # ASP3+TECS カーネル API
 ├── atk2+tecs/           # ATK2+TECS
 ├── mruby-on-ev3rt+tecs/ # mruby EV3RT バインディング
-└── mruby-on-gr-peach+tecs/
+├── mruby-on-gr-peach+tecs/
+├── tinet+tecs/          # TINET+TECS
+└── tlsf+tecs/           # TLSF+TECS
 ```
 
 ## TECS 固有マークアップ
