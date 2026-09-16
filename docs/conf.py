@@ -240,7 +240,7 @@ htmlhelp_basename = 'TECSdoc'
 
 # -- Options for LaTeX output ---------------------------------------------
 
-latex_engine = 'platex'
+latex_engine = 'uplatex'
 latex_elements = {
      # The paper size ('letterpaper' or 'a4paper').
      #
