@@ -9,7 +9,7 @@ dependencies = [
     "readthedocs-sphinx-search==0.1.0",
     "setuptools<75",
     "sphinx==3.5.3",
-    "jinja2<3.1",
+    "jinja2<3.2",
     "sphinxcontrib-applehelp==1.0.2",
     "sphinxcontrib-devhelp==1.0.2",
     "sphinxcontrib-htmlhelp==2.0.0",
