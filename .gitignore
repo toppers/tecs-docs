@@ -6,7 +6,7 @@ Thumbs.db
 *.DS_Store
 
 # Derived files
-# _build
+docs/_*
 
 # Editors
 *~
@@ -17,4 +17,3 @@ Thumbs.db
 #
 .serena/
 TECS.pdf
-_build/
