@@ -25,7 +25,7 @@ TransparentRPCPlugin プラグインリファレンス
 
 マーシャルの形式が固定されているため、通信の両端で型の表現が一致してい
 る必要があります (「制限事項」を参照)。型に依存しない形式で通信する場
-合は、:ref:`OpaqueRPCPlugin` を使用してください。
+合は、OpaqueRPCPlugin を使用してください。
 
 プラグイン種別
 ----------------------------
@@ -73,13 +73,13 @@ TransparentRPCPlugin プラグインリファレンス
      - 一方向チャンネルのセルタイプを指定します。セルタイプ (コンポジットセルタイプを含む) 以外を指定するとエラーです。
    * - ``TDRCelltype=celltype``
      - ``tTDR``
-     - TDR (Transparent Data Representation) のセルタイプを指定します。セルタイプ以外を指定するとエラーです。
+     - TDR のセルタイプを指定します。セルタイプ以外を指定するとエラーです。
    * - ``channelCell=name``
      - ``(セル名)_Channel``
      - 一方向チャンネルのセル名を指定します。識別子として使える名前でなければなりません。
    * - ``PPAllocatorSize=N``
      - (指定なし)
-     - 引数の総和のサイズを指定します。``oneway`` 関数に配列を ``in`` 引数として渡すなど、PP (ポイントツーポイント) アロケータが必要なシグニチャでは必須です (指定しないとエラー RPC9999)。
+     - 引数の総和のサイズを指定します。``oneway`` 関数の ``in`` 引数に配列があるシグニチャでは必須です (指定しないとエラー RPC9999)。
    * - ``noClientSemaphore=true|false``
      - ``false``
      - ``true`` を指定すると、クライアント側のセマフォを生成しません。``true`` と ``false`` 以外はエラーです。
@@ -192,7 +192,7 @@ RPC を経由させたい結合に、``through`` 指定子を記述します。
 関連
 ----------------------------
 
- * :ref:`OpaqueRPCPlugin`
- * :ref:`SharedOpaqueRPCPlugin`
- * :ref:`TracePlugin`
+ * OpaqueRPCPlugin プラグインリファレンス
+ * SharedOpaqueRPCPlugin プラグインリファレンス
+ * TracePlugin プラグインリファレンス
  * :doc:`Plugin`
