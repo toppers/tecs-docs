@@ -13,8 +13,12 @@ MrubyInfoBridgePlugin プラグインリファレンス
 
 実行時情報機能 TECSInfo を使用した版の mruby ブリッジです。mruby のコー
 ドの中から TECSInfo を用いてセル名、受け口名から生の受け口ディスクリプタ
-(RawEtnryDescriptor †) を取得して動的結合することで、目的となるセルを呼
+(RawEntryDescriptor) を取得して動的結合することで、目的となるセルを呼
 びだすことができます。
+
+従来の MrubyBridgePlugin は、ブリッジセルをあらかじめ CDL に記述して結
+合しておく必要があります。MrubyInfoBridgePlugin では、結合先をセル名と
+受け口名の文字列で実行時に指定できます。
 
 プラグイン種別
 ----------------------------
@@ -23,6 +27,115 @@ MrubyInfoBridgePlugin はマルチプラグインです。適応可能な対象�
 チャまたはセルです。
 通常は、nTECSInfo::tTECSInfoCompo または nTECSInfo::tTECSInfoAccessor
 のセルに対し適用します。
+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 30 50
+
+   * - 適用対象
+     - 実体となるプラグイン
+     - 役割
+   * - セル
+     - MrubyInfoBridgeCellPlugin
+     - 全シグニチャに対し MrubyInfoBridgeSignaturePlugin を適用するコードを生成する
+   * - シグニチャ
+     - MrubyInfoBridgeSignaturePlugin
+     - シグニチャごとにブリッジセルタイプと mruby のブリッジクラスを生成する
+   * - セルタイプ、コンポジット
+     - (対応しない)
+     -
+
+MrubyInfoBridgeCellPlugin は、すべてのシグニチャに対し
+``generate( MrubyInfoBridgeSignaturePlugin, (シグニチャ), "auto_exclude=true" )``
+を適用するコードを生成します。ただし、ネームスペース nMrubyInfo 下のシ
+グニチャは対象外です。
+
+シグニチャごとにオプションを指定したい場合は、
+MrubyInfoBridgeSignaturePlugin を直接 generate します。
+
+構文
+----------------------------
+
+ .. code-block:: tecs-cdl
+
+  generate( MrubyInfoBridgePlugin, (セル名), "" );
+  generate( MrubyInfoBridgePlugin, (シグニチャ名), "(オプション)" );
+
+オプション
+----------------------------
+
+オプションは、シグニチャに対して適用する場合に指定できます。
+MrubyBridgePlugin のシグニチャプラグインと共通です。
+オプションが複数ある場合は、','(コンマ)で区切ります。
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - オプション
+     - 説明
+   * - ``include=func1,func2,...``
+     - ブリッジの対象とする関数名を指定します。指定した関数のみが mruby から呼びだせます。シグニチャにない関数名を指定するとエラーです (MRB1009)。
+   * - ``exclude=func1,func2,...``
+     - ブリッジの対象から除外する関数名を指定します。シグニチャにない関数名を指定するとエラーです (MRB1010)。
+   * - ``auto_exclude=true|false``
+     - mruby から呼びだせない関数を自動的に除外するかどうかを指定します。既定値は ``true`` です。``true`` の場合、除外した旨が情報メッセージ (MRI0001, MRI0002) として出力されます。``false`` の場合、該当する関数があるとエラーになります (MRB1001, MRB1003)。``true`` と ``false`` 以外の値は警告 (MRB9999) となり無視されます。
+   * - ``ignoreUnsigned[=true]``
+     - 値を省略するか ``true`` を指定すると、``ignoreUnsigned`` が有効になります。(効果の詳細は MrubyBridgePlugin と共通。TBC)
+
+``include`` と ``exclude`` を同時に指定するとエラーです (MRB1011)。
+関数がすべて除外された場合は警告となります (MRB1012)。
+
+自動的に除外される関数
+````````````````````````````
+
+``auto_exclude=true`` の場合、次のいずれかに該当する関数は、ブリッジの対象から自動的に除外されます。
+
+ * 戻り値の型が bool、整数、浮動小数点数、void のいずれでもない関数
+ * ``send``, ``receive`` 方向の引数をもつ関数
+
+対象外のシグニチャ
+````````````````````````````
+
+次のシグニチャは、MrubyInfoBridgeSignaturePlugin を適用してもブリッジが生成されません。
+
+ * nTECSInfo ネームスペースのシグニチャ (nTECSInfo::sAccessor を除く)
+ * nMruby::sInitializeBridge
+ * nMruby::sInitializeTECSBridge
+
+生成されるもの
+----------------------------
+
+シグニチャ (グローバル名 ``sigGlobalName``) に対し MrubyInfoBridgeSignaturePlugin を適用すると、次のものが生成されます。
+
+.. list-table::
+   :header-rows: 1
+   :widths: 35 65
+
+   * - 生成物
+     - 説明
+   * - ブリッジセルタイプ ``nMrubyInfo::tInfo`` + ``sigGlobalName``
+     - シグニチャごとのブリッジセルタイプです。呼び口 cTECS を動的結合 (``dynamic``, ``optional``) で持ち、TECSInfo の呼び口 cTECSInfo などを持ちます。シングルトンです。
+   * - 初期化セルタイプ ``nMrubyInfo::tInfo`` + ``sigGlobalName`` + ``_Initializer``
+     - mruby VM へブリッジクラスを登録するセルタイプです。
+   * - ブリッジセル ``MrubyInfoBridge_`` + ``sigGlobalName``
+     - ブリッジセルタイプのセルです。cTECSInfo を ``TECSInfo.eTECSInfo`` に結合します。
+   * - mruby のブリッジクラス ``TECS::Info`` + ``sigGlobalName``
+     - mruby のコードからアクセスするクラスです。``TECS::Info`` + ``sigGlobalName`` ``.new( "(セル名).(受け口名)" )`` でインスタンスが生成されます。
+   * - ``gen/(セル名)Initializer.cdl``
+     - VM ごとに生成される初期化セル ``(VM名)_TECSInitializer`` (セルタイプ nMruby::tTECSInitializer) の宣言です。VM 名の既定値は ``VM`` で、ブリッジセルの属性 ``VMname`` で変更できます。
+
+生成時に、対応関係が次の形式で標準出力に表示されます。
+
+.. code-block:: none
+
+  MrubyInfoBridgePlugin: [signature] ::nSample::sSig => [class] TECS::Info...
+
+また、``Makefile`` に mruby 用の設定が追加されます。
+
+ * リンクフラグ ``-lmruby -L$(MRUBYPATH)/lib -lm``
+ * インクルードパス ``$(MRUBYPATH)/include``
+ * 変数 ``MRUBYPATH`` (既定値 ``..``。利用環境に合わせて変更します)
 
 使用方法
 ----------------------------
@@ -67,7 +180,7 @@ nTECSInfo::tTECSInfoCompo のセルを追加した上で、これに対し2つ�
 ``````````````````
 
 以下を mruby のコードに追加します。
- 
+
 .. code-block:: ruby
 
   ## -------- MrubyInfoBridgePlugin: Bridge Joiner --------- ##
@@ -106,7 +219,7 @@ mruby のコード (.rb) でブリッジを生成し TECS のセルの受け口�
    mruby コード記述例
 
 .. code-block:: ruby
-           
+
      bridge = TECS::Bridge.join( "Sample.eEnt" )
 
 join の引数は、(セル名) + '.' + (受け口名) の文字列である。
@@ -115,7 +228,7 @@ join の引数は、(セル名) + '.' + (受け口名) の文字列である。
 
    mruby コード記述例
 
-.. code-block:: tecs-cdl
+.. code-block:: ruby
 
      bridge2 = TECS::Bridge.join( "Sample.eEntArray[1]" )
 
@@ -131,15 +244,68 @@ join の引数は (セル名) + '.' + (受け口名) + '[' + (配列添数) + ']
 受け口のシグニチャの定義が子ネームスペースの下にある場合、2-2) の方法
 では結合できません。この場合、シグニチャのグローバル名も指定してjoin2
 メソッドを使用して結合します。
+グローバル名は、ネームスペース名とシグニチャ名を '_' でつないだもので
+す ('::' ではありません)。
 
 mruby コード記述例
 
-.. code-block:: tecs-cdl
-                
-     bridge = TECS::Bridge.join2( "Sample.eEnt", nBride_sSample )
+.. code-block:: ruby
+
+     bridge = TECS::Bridge.join2( "Sample.eEnt", "nBridge_sSample" )
 
 現在の実装では TECSInfo でネームスペースパスを得ることができないため、
 ネームスペースパスを指定する必要があります。
+
+mruby から見たクラスと関数
+----------------------------
+
+ブリッジクラスのインスタンスに対し、シグニチャの関数と同名のメソッド
+を呼びだすことで、結合先のセルの受け口関数が呼びだされます。
+
+ * シグニチャに ``initialize`` という名前の関数がある場合、内部で
+   ``initialize`` を定義しているため、mruby 側では ``initialize_cell``
+   に名前を変更する必要があります (警告 MRW2001, MRB1002)。
+
+エラー・警告メッセージ
+----------------------------
+
+.. list-table::
+   :header-rows: 1
+   :widths: 15 15 70
+
+   * - 番号
+     - 種別
+     - 内容
+   * - MRB1001
+     - エラー
+     - 戻り値の型が使用できない (``auto_exclude=false`` の場合)
+   * - MRB1003
+     - エラー
+     - ``send``, ``receive`` 方向の引数が使用できない (``auto_exclude=false`` の場合)
+   * - MRB1009
+     - エラー
+     - ``include`` に指定した関数がシグニチャにない
+   * - MRB1010
+     - エラー
+     - ``exclude`` に指定した関数がシグニチャにない
+   * - MRB1011
+     - エラー
+     - ``include`` と ``exclude`` を同時に指定した
+   * - MRB1012
+     - 警告
+     - ``exclude`` により、残った関数がない
+   * - MRB1002, MRW2001
+     - 警告
+     - ``initialize`` は内部で定義されている。mruby 側では ``initialize_cell`` に変更する
+   * - MRB9999
+     - 警告
+     - ``auto_exclude`` の値が不正 (``true`` か ``false`` を指定する)
+   * - MRBW001
+     - 情報
+     - 同じシグニチャに対するプラグインの重複。2つめ以降は無視される
+   * - MRI0001, MRI0002
+     - 情報
+     - 使用できない戻り値の型または引数方向のため、関数を自動除外した
 
 備考、制限事項
 -------------------
@@ -169,7 +335,7 @@ MrubyBridgePlugin を用いてください。
 つしかブリッジセルがなくても、同時に異なる結合先に結合させることができ
 るようになります。
 
-・MrubyBridgePlugin との併用
+MrubyBridgePlugin との併用
 ````````````````````````````````````````
 
 VM_Initializer セルには MrubyBridgePlugin, MrubyInfoBridgePlugin の両
@@ -188,3 +354,8 @@ MrubyBridgePlugin の呼出しは必須ではない
 みを使用する場合には不要です。少しオーバーヘッドを低減できます。
 @@accessor を初期化する行も不要になりますので合わせて削除します。
 
+関連
+----------------------------
+
+ * :doc:`mrubyBridge`
+ * :doc:`Plugin`
