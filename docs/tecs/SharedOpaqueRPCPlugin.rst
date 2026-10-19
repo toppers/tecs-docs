@@ -6,7 +6,7 @@ SharedOpaqueRPCPlugin プラグインリファレンス
 名前
 -------
 
-  SharedOpaqueRPCPlugin ... 複数のシグニチャで 1 本のチャンネルを共有する Opaque RPC プラグイン
+  SharedOpaqueRPCPlugin ... 複数の結合で 1 本のチャンネルを共有する Opaque RPC プラグイン
 
 概要
 -------
@@ -14,11 +14,11 @@ SharedOpaqueRPCPlugin プラグインリファレンス
 OpaqueRPCPlugin と同じく、クライアント側とサーバー側のリージョンにまた
 がる呼び出しを RPC で中継します。OpaqueRPCPlugin がシグニチャ(結合)ご
 とにチャンネルとサーバータスクを生成するのに対し、SharedOpaqueRPCPlugin
-は、``sharedChannelName`` に同じ名前を指定した複数のシグニチャで、1 本の
+は、``sharedChannelName`` に同じ名前を指定した複数の結合で、1 本の
 チャンネルと 1 つのサーバータスクを共有します。
 
 通信の本数とサーバータスクの数を抑えられます。クライアント側では、共有
-するチャンネルに対するアクセスが、シグニチャごとに用意されたセマフォで
+するチャンネルに対するアクセスが、結合ごとに割り当てられたセマフォで
 排他制御されます。
 
 プラグイン種別
@@ -114,7 +114,7 @@ OpaqueRPCPlugin と同じく、クライアント側とサーバー側のリー�
    * - コンポジットセルタイプ ``tSharedOpaqueRPCPluginChannel_tTDR_Server``
      - サーバー側の共有チャンネルです。TDR、タスクメイン (オープナ付き)、タスクを含みます。タスクは起動時に自動で起動されます (``TA_ACT``)。
    * - 共有チャンネルのセル ``(sharedChannelName)``, ``(sharedChannelName)_Server``
-     - クライアント側、サーバー側のリージョンに、それぞれ 1 つ生成されます。サーバー側のセルの ``cUnmarshalAndCallFunction`` は、共有するシグニチャごとのアンマーシャラの受け口が配列として結合されます。
+     - クライアント側、サーバー側のリージョンに、それぞれ 1 つ生成されます。サーバー側のセルの ``cUnmarshalAndCallFunction`` は、共有する結合ごとのアンマーシャラの受け口が配列として結合されます。
    * - マーシャラのセル
      - クライアント側に、結合ごとに生成されます。共有チャンネルのセルの ``eTDR`` と、結合ごとに割り当てられた ``eSemaphore[N]`` に結合されます。
    * - アンマーシャラのセル ``(セル名)_Server``
